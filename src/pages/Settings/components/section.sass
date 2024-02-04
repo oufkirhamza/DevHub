@@ -1,0 +1,33 @@
+body
+    background: #f4f7fb
+    
+.input-div
+  position: relative
+  width: 100px
+  height: 100px
+  border-radius: 50%
+  border: 2px solid #35c635
+  display: flex
+  justify-content: center
+  align-items: center
+  overflow: hidden
+  animation: flicker 2s linear infinite
+.input-div
+    &:hover
+        box-shadow: 0px 0px 50px -10px #35c635, inset 0px 0px 10px #35c635, 0px 0px 5px #35c635
+        transition: 0.5s
+        
+.icon
+  color: #35c635
+  font-size: 2rem
+  cursor: pointer
+  animation: iconflicker 2s linear infinite
+  position: absolute
+
+.input
+  position: absolute
+  opacity: 0
+  width: 100%
+  height: 100%
+  cursor: pointer !important
+
