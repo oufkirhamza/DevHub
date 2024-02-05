@@ -51,27 +51,26 @@ export const Section = () => {
           setPasswordError(true);
           // You can also show an alert or handle the error as needed
           alert("Password and Confirm Password do not match!");
-          return;
+        } else {
+          // Clear password error when passwords match
+          setPasswordError(false);
+      
+          setUserInfo((prevUserInfo) => ({
+            ...prevUserInfo,
+            ...Object.fromEntries(
+              Object.entries(tempChanges).filter(([key, value]) => value !== '')
+            ),
+            password: password, // Add password to userInfo
+          }));
+      
+          // Clear the tempChanges after applying
+          setTempChanges({
+            firstName: '',
+            lastName: '',
+            email: '',
+            bio: '',
+          });
         }
-      
-        // Clear password error when passwords match
-        setPasswordError(false);
-      
-        setUserInfo((prevUserInfo) => ({
-          ...prevUserInfo,
-          ...Object.fromEntries(
-            Object.entries(tempChanges).filter(([key, value]) => value !== '')
-          ),
-          password: password, // Add password to userInfo
-        }));
-      
-        // Clear the tempChanges after applying
-        setTempChanges({
-          firstName: '',
-          lastName: '',
-          email: '',
-          bio: '',
-        });
       
         // Clear password and confirm password fields after applying
         setPassword('');
