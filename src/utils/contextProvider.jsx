@@ -18,12 +18,14 @@ export const MyProvider = ({ children }) => {
             profile: {
                 image: avatar,
                 bio: "If the automobile had followed the same development cycle as the computer, a Rolls-Royce would today cost $100, get a million miles per gallon, and explode once a year, killing everyone inside.",
-                following: [],
+                following: [1],
                 followers: [],
                 postsProfile: [],
                 postsGroupes: [],
                 Products: [],
-                groupes: [],
+                groupes: [
+                
+                ],
             },
         },
         {
@@ -42,7 +44,14 @@ export const MyProvider = ({ children }) => {
                 postsProfile: [],
                 postsGroupes: [],
                 Products: [],
-                groupes: [],
+                groupes: [
+                    // {
+                    //     groupeName:"hamza",
+                    //     members: [],
+                    //     accesPosts: [],
+                    //     id: 1,
+                    // },
+                ],
             },
         },
         {
@@ -133,12 +142,12 @@ export const MyProvider = ({ children }) => {
         }
     )
     const [groupe, setGroupe] = useState(
-        {
-            groupeName: "",
-            members: [],
-            accesPosts: [],
-            id: "",
-        }
+            {
+                groupeName: "",
+                members: [],
+                accesPosts: [],
+                id: "",
+            }
     )
 
     return (
