@@ -1,11 +1,11 @@
 
 import React, { createContext, useState } from 'react'
 import avatar from "../assets/img/avatar-profile.jpg"
+import { Header } from '../layouts/header'
 export const MyContext = createContext()
 export const MyProvider = ({ children }) => {
 
     // const [test, setTest] = useState('Hello Test')
-
     const [myData, setMyData] = useState([
         {
             userName: "admin",
@@ -20,7 +20,22 @@ export const MyProvider = ({ children }) => {
                 bio: "If the automobile had followed the same development cycle as the computer, a Rolls-Royce would today cost $100, get a million miles per gallon, and explode once a year, killing everyone inside.",
                 following: [],
                 followers: [],
-                postsProfile: [],
+                postsProfile: [
+                    {
+                        id: "",
+                        image: avatar,
+                        description: "",
+                        likes: [1, 1, 1, 1],
+                        comments: [],
+                    },
+                    {
+                        id: "",
+                        image: avatar,
+                        description: "",
+                        likes: [1, 1, 1, 1, 1, 1, 1, 1],
+                        comments: [],
+                    },
+                ],
                 postsGroupes: [],
                 Products: [],
                 groupes: [],
@@ -39,7 +54,22 @@ export const MyProvider = ({ children }) => {
                 bio: "If the automobile had followed the same development cycle as the computer, a Rolls-Royce would today cost $100, get a million miles per gallon, and explode once a year, killing everyone inside.",
                 following: [],
                 followers: [],
-                postsProfile: [],
+                postsProfile: [
+                    {
+                        id: "",
+                        image: avatar,
+                        description: "nhar m3a l3chran",
+                        likes: [1, 1, 1],
+                        comments: [],
+                    },
+                    {
+                        id: "",
+                        image: "",
+                        description: "nhar m3a l3chran",
+                        likes: [1, 1, 1],
+                        comments: [],
+                    },
+                ],
                 postsGroupes: [],
                 Products: [],
                 groupes: [],
@@ -143,6 +173,8 @@ export const MyProvider = ({ children }) => {
 
     return (
         <>
+            
+
             <MyContext.Provider value={[myData, setMyData, user, setUser, product, setProduct, poste, setPoste, comment, setComment, groupe, setGroupe]} >
                 {children}
             </MyContext.Provider>
