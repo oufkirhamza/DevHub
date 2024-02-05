@@ -7,6 +7,10 @@ export const Section = () => {
     const [profileImg, setprofileImg] = useState([]);
     const [image, setImage] = useState(null);
 
+    const [password, setPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
+    const [passwordError, setPasswordError] = useState(false);
+
     const handlechange = (e) => {
         const selectedImage = e.target.files[0];
         setImage(URL.createObjectURL(selectedImage));
@@ -18,6 +22,7 @@ export const Section = () => {
         lastName: 'Faras',
         email: 'Badr@gmail.com',
         bio: 'dima raja',
+       
     });
 
     const [tempChanges, setTempChanges] = useState({
@@ -25,33 +30,53 @@ export const Section = () => {
         lastName: '',
         email: '',
         bio: '',
+        
     });
 
     const handleUserInfoChange = (field, value) => {
-        setTempChanges((prevChanges) => ({
+        // Handle password change separately
+        if (field === 'password') {
+          setPassword(value);
+        } else {
+          setTempChanges((prevChanges) => ({
             ...prevChanges,
             [field]: value,
-        }));
-    };
+          }));
+        }
+      };
 
 
-    const handleApplyButtonClick = () => {
+      const handleApplyButtonClick = () => {
+        if (password !== confirmPassword) {
+          setPasswordError(true);
+          // You can also show an alert or handle the error as needed
+          alert("Password and Confirm Password do not match!");
+          return;
+        }
+      
+        // Clear password error when passwords match
+        setPasswordError(false);
+      
         setUserInfo((prevUserInfo) => ({
-            ...prevUserInfo,
-            ...Object.fromEntries(
-                Object.entries(tempChanges).filter(([key, value]) => value !== '')
-            ),
+          ...prevUserInfo,
+          ...Object.fromEntries(
+            Object.entries(tempChanges).filter(([key, value]) => value !== '')
+          ),
+          password: password, // Add password to userInfo
         }));
-
+      
         // Clear the tempChanges after applying
         setTempChanges({
-            firstName: '',
-            lastName: '',
-            email: '',
-            bio: '',
+          firstName: '',
+          lastName: '',
+          email: '',
+          bio: '',
         });
+      
+        // Clear password and confirm password fields after applying
+        setPassword('');
+        setConfirmPassword('');
     };
-
 
     return (
         <>
@@ -110,8 +135,8 @@ export const Section = () => {
                     <input onChange={(e) => handleUserInfoChange('lastName', e.target.value)} value={tempChanges.lastName} className='outline-none border-[1.5px] border-[#6978a04f] h-14 w-50 rounded-xl p-5 bg-[#f4f7fb]' type="text" placeholder='New LastName' />
                     <input onChange={(e) => handleUserInfoChange('email', e.target.value)} value={tempChanges.email} className='outline-none border-[1.5px] border-[#6978a04f] h-14 w-50 rounded-xl p-5 bg-[#f4f7fb]' type="text" placeholder='New Email' />
                     <div className='flex flex-row gap-3 '>
-                        <input className='outline-none border-[1.5px] border-[#6978a04f] h-14 w-full rounded-xl p-5 bg-[#f4f7fb]' type="text" placeholder='Current password' />
-                        <input className='outline-none border-[1.5px] border-[#6978a04f] h-14 w-full rounded-xl p-5 bg-[#f4f7fb]' type="text" placeholder='New password' />
+                        <input onChange={(e) => handleUserInfoChange('password', e.target.value)} value={password} className='outline-none border-[1.5px] border-[#6978a04f] h-14 w-full rounded-xl p-5 bg-[#f4f7fb]' type="password" placeholder='Current password' />
+                        <input onChange={(e) => setConfirmPassword(e.target.value)} value={confirmPassword} className='outline-none border-[1.5px] border-[#6978a04f] h-14 w-full rounded-xl p-5 bg-[#f4f7fb]' type="password" placeholder='New password' />
                     </div>
                     <div>
                         <textarea onChange={(e) => handleUserInfoChange('bio', e.target.value)} value={tempChanges.bio} className='outline-none border-[1.5px] border-[#6978a04f] h-28 w-50 rounded-xl p-5 bg-[#f4f7fb] w-full' name="" id="" placeholder='New Bio'></textarea>
