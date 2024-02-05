@@ -11,6 +11,7 @@ import { Settings } from './pages/Settings/settings';
 import { Signup } from './pages/Signup/signup';
 import { Suggestion } from './pages/Suggestions/suggestion';
 import { Header } from './layouts/header';
+import { ProductPage } from './pages/Market_Product/Products';
 function App() {
   return (
     <MyProvider>
@@ -25,6 +26,7 @@ function App() {
         <Route path='/settings' element={<Settings />} />
         <Route path='/' element={<Signup />} />
         <Route path='/suggestions' element={<Suggestion />} />
+        <Route path='/products/:id' element={<ProductPage/>} />
       </Routes >
     </MyProvider>
 
