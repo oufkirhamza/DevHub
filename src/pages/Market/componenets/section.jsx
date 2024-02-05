@@ -1,24 +1,18 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import "./section.sass"
 import { IoIosArrowForward, IoIosSearch } from "react-icons/io";
-import myImage from "../../../assets/img/video.png";
-import myImage1 from "../../../assets/img/web-design.png";
-import myImage2 from "../../../assets/img/photography.png";
-import myImage3 from "../../../assets/img/filming.png";
-import myImage4 from "../../../assets/img/video.png";
-import myImage5 from "../../../assets/img/git.png";
-import myImage6 from "../../../assets/img/video.png";
 import { Link, useNavigate } from 'react-router-dom';
+import { MyContext } from '../../../utils/contextProvider';
 
 export const Section = ({ data }) => {
     const [selectedCategory, SearchCategorie] = useState("");
     const [myData] = useContext(MyContext);
 
     // Filtrer les données pour trouver l'élément correspondant à l'ID
-    const check = myData.find((data) => data.profile.Products.some((product) => product.id === parseInt(id)));
+    // const check = myData.find((data) => data.profile.Products.some((product) => product.id === parseInt(id)));
 
 
-    const product = check.profile.Products.find((product) => product.id === parseInt(id));
+    // const product = check.profile.Products.find((product) => product.id === parseInt(id));
 
     const Filter = (category) => {
         SearchCategorie(category);
@@ -94,7 +88,7 @@ export const Section = ({ data }) => {
                     {/* cards - products */}
                     <div>
                         <div className="grid grid-cols-4 gap-4 py-5 cursor-pointer min-h-[100vh]">
-                            {filteredData.map(product => (
+                            {/* {filteredData.map(product => (
                                 <div key={product.id} className="bg-white  h-[40vh] p-4 rounded-lg shadow-md hover:scale-105 duration-700 ">
                                     <img src={product.image} className='rounded-lg' alt="" />
                                     <h2 className="text-lg font-semibold">{product.type}</h2>
@@ -107,7 +101,7 @@ export const Section = ({ data }) => {
                                     </Link>
                                 </div>
                                 
-                            ))}
+                            ))} */}
                         </div>
                     </div>
                 </div>
