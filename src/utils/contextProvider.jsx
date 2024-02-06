@@ -2,7 +2,7 @@
 import React, { createContext, useState } from 'react'
 import avatar from "../assets/img/avatar-profile.jpg"
 import { Header } from '../layouts/header'
-// import card from "../assets/img/Teach Online PNG Transparent, Online Teaching Linear Education Information, Chemistry Clipart, Computer, Online Education PNG Image For Free Download.jpeg"
+import card from "../assets/img/Teach Online PNG Transparent, Online Teaching Linear Education Information, Chemistry Clipart, Computer, Online Education PNG Image For Free Download.jpeg"
 export const MyContext = createContext()
 export const MyProvider = ({ children }) => {
 
@@ -76,7 +76,40 @@ export const MyProvider = ({ children }) => {
                 postsGroupes: [],
                 Products: [
 
-                    
+                    {
+                        id: 1,
+                        price: 10.99,
+                        description: "Do you need a web design for your product or service",
+                        category: "Web Design",
+                        city: "Paris",
+                        image: card
+
+                    },
+                    {
+                        id: 1,
+                        price: 10.99,
+                        description: "Do you need a web design for your product or service",
+                        category: "Web developpement",
+                        city: "Paris",
+                        image: card
+
+                    },{
+                        id: 1,
+                        price: 10.99,
+                        description: "Do you need a web design for your product or service",
+                        category: "Web Design",
+                        city: "Paris",
+                        image: card
+
+                    },{
+                        id: 1,
+                        price: 10.99,
+                        description: "Do you need a web design for your product or service",
+                        category: "Web Design",
+                        city: "Paris",
+                        image: card
+
+                    },
 
 
 
