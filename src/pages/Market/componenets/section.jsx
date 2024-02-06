@@ -19,6 +19,7 @@ export const Section = ({ data }) => {
     const [descreption, setDescreption] = useState('')
     const [category, setCategory] = useState('')
     const [images, setImg] = useState('')
+
     const [product, setProduct] = useState(
         {
             id: "",
@@ -92,6 +93,10 @@ export const Section = ({ data }) => {
         console.log(myData[0]);
         clearInputs();
     }
+    const removeProduct = (productId) => {
+        const removeProduct = myData[0].profile.Products.filter(product => product.id === 'newProduct');
+    
+    };
 
     return (
         <>
@@ -255,6 +260,7 @@ export const Section = ({ data }) => {
                                 element.profile.Products.map(e =>
                                     <div>
                                         <div key={e.id} className="bg-white  h-[57] w-[100%] p-4 rounded-lg shadow-md flex flex-col justify-between hover:scale-105 duration-700 ">
+                                            <button onClick={() => removeProduct(e.id)} className="text-red-500">Supprimer</button>
                                             <img src={e.image} className='rounded-lg h-[40vh] w-[100%]' alt="" />
                                             <p className='text-2xl font-bold'> {e.price} € <span className='text-gray-500 line-through text-sm'>{e.price}€</span></p>
                                             <p> <span className='font-bold text-xl'></span>{e.name}</p>

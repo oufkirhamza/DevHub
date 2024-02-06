@@ -86,7 +86,7 @@ export const MyProvider = ({ children }) => {
 
                     },
                     {
-                        id: 1,
+                        id: 2,
                         price: 10.99,
                         description: "Do you need a web design for your product or service",
                         category: "Web developpement",
@@ -94,7 +94,7 @@ export const MyProvider = ({ children }) => {
                         image: card
 
                     },{
-                        id: 1,
+                        id: 3,
                         price: 10.99,
                         description: "Do you need a web design for your product or service",
                         category: "Web Design",
@@ -102,7 +102,7 @@ export const MyProvider = ({ children }) => {
                         image: card
 
                     },{
-                        id: 1,
+                        id: 4,
                         price: 10.99,
                         description: "Do you need a web design for your product or service",
                         category: "Web Design",
