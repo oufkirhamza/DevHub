@@ -9,10 +9,7 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "antd": "^5.14.0",
-<<<<<<< HEAD
     "flowbite-react": "^0.7.2",
-=======
->>>>>>> 37ae8bcc446bca74e269d24612dabc6fe8dbb50f
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^5.0.1",
