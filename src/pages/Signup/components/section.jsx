@@ -78,6 +78,7 @@ export const Section = () => {
     const hello = (e) => {
         e.preventDefault();
         filterElement();
+        
 
         // Validate and prompt for email
         const validateEmail = (inputEmail) => {
@@ -102,7 +103,7 @@ export const Section = () => {
             const formattedUsername = formatName(username);
             const newUser = new users(username, email, password, firstname, lasttname, phone);
             PushArray(newUser);
-            navigate('/login/:id');
+            navigate('/login');
         } else {
             alert("Passwords do not match or there is a validation error.");
         }

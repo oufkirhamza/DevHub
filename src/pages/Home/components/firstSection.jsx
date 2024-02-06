@@ -53,14 +53,16 @@ export const FirstSection = () => {
         setPreviewOpen(true);
         setPreviewTitle(file.name || file.url.substring(file.url.lastIndexOf('/') + 1));
     };
-    const usePictures = []
+    const [Pic,setPic]=useState([])
     const handleChange = ({ fileList: newFileList }) => {
+        const userPictures = []
         setFileList(newFileList);
         const adaptPictures = [...fileList]
         adaptPictures.forEach(element => {
             // console.log(adaptPictures);
             // console.log("000000000000");
-            usePictures.push(element.originFileObj)
+            userPictures.push(element.originFileObj)
+            setPic(userPictures)
             // console.log(usePictures);
         });
         
@@ -73,7 +75,7 @@ export const FirstSection = () => {
             </div>
         </button>
     );
-    const [postInput, setPostInput] = useState('')
+const [postInput, setPostInput] = useState('');
 
     // const [poste, setPoste] = useState(
     //     {
@@ -89,27 +91,25 @@ export const FirstSection = () => {
         setPostInput(e.target.value)
         // poste.description = e.target.value
     }
-    const submitPost = (e) => {
-        let newPost = {...poste}
-        console.log(newPost);
-        newPost.description = postInput
-        newPost.image = usePictures
-        // setPostInput(newPost)
-        setPoste(newPost)
+    const submitPost = (e) => { 
+        
+        const upPost = {...poste}
+        poste.image = Pic
         // console.log(poste);
         // console.log(fileList);
         // console.log(usePictures);
-        setPostInput("")
-        // setFileList("")
         const newData = [...myData]
         console.log(newData[0]);
         newData[0].profile.postsProfile.unshift(poste)
         console.log(myData);
+        setPostInput("")
+        setFileList([])
+        setPic(null)
+        setPoste(upPost)
     }
     let like = true;
     const likePost = () =>{
         // like ? myData[0].profile.postsProfile.likes.push(1) : 
-        
         const postLikes = myData[0].profile.postsProfile[0].likes;
         if (like) {
             // myData[0].profile.postsProfile[0].likes.push(1)
@@ -219,7 +219,7 @@ export const FirstSection = () => {
                                                             }
                                                         </Carousel>
                                                     </div>
-                                                : <img width={500} height={500} src={p.image[0] instanceof Blob ? URL.createObjectURL(p.image[0]) : p.image[0]} className={`${p.image ? "" : "hidden"}`} alt="" />
+                                                : <img width={500} height={500} src={p.image[0] instanceof Blob ? URL.createObjectURL(p.image[0]) : p.image[0]} className={`${p.image.length > 0 ? "" : "hidden"}`} alt="" />
                                                     }
                                             </div>
                                             <div className='flex gap-4 w-[100%] px-3 font-bold'>
