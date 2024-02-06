@@ -23,14 +23,14 @@ export const MyProvider = ({ children }) => {
                 postsProfile: [
                     {
                         id: "",
-                        image: avatar,
-                        description: "",
+                        image: [avatar],
+                        description: "messi",
                         likes: [1, 1, 1, 1],
                         comments: [],
                     },
                     {
                         id: "",
-                        image: avatar,
+                        image: [avatar],
                         description: "",
                         likes: [1, 1, 1, 1, 1, 1, 1, 1],
                         comments: [],
@@ -57,7 +57,7 @@ export const MyProvider = ({ children }) => {
                 postsProfile: [
                     {
                         id: "",
-                        image: avatar,
+                        image: [avatar],
                         description: "nhar m3a l3chran",
                         likes: [1, 1, 1],
                         comments: [],

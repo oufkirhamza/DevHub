@@ -28,7 +28,6 @@ export const FirstSection = () => {
     };
     const handleOk = () => {
         setIsModalOpen(false);
-        console.log(fileList[0]);
     };
     const handleCance = () => {
         setIsModalOpen(false);
@@ -54,29 +53,28 @@ export const FirstSection = () => {
         setPreviewOpen(true);
         setPreviewTitle(file.name || file.url.substring(file.url.lastIndexOf('/') + 1));
     };
+    const usePictures = []
     const handleChange = ({ fileList: newFileList }) => {
         setFileList(newFileList);
+        const adaptPictures = [...fileList]
+        adaptPictures.forEach(element => {
+            // console.log(adaptPictures);
+            // console.log("000000000000");
+            usePictures.push(element.originFileObj)
+            // console.log(usePictures);
+        });
+        
     }
     const uploadButton = (
-        <button
-            style={{
-                border: 0,
-                background: 'none',
-            }}
-            type="button"
-        >
+        <button style={{ border: 0, background: 'none', }} type="button">
             <PlusOutlined />
-            <div
-                style={{
-                    marginTop: 8,
-                }}
-            >
+            <div style={{ marginTop: 8, }}>
                 Upload
             </div>
         </button>
     );
     const [postInput, setPostInput] = useState('')
-    
+
     // const [poste, setPoste] = useState(
     //     {
     //         id: "",
@@ -91,11 +89,43 @@ export const FirstSection = () => {
         setPostInput(e.target.value)
         // poste.description = e.target.value
     }
-    const tchitcharito = (e) => {
-        poste.description=postInput
+    const submitPost = (e) => {
+        let newPost = {...poste}
+        console.log(newPost);
+        newPost.description = postInput
+        newPost.image = usePictures
+        // setPostInput(newPost)
+        setPoste(newPost)
+        // console.log(poste);
+        // console.log(fileList);
+        // console.log(usePictures);
         setPostInput("")
-        console.log(poste);
-        console.log(fileList);
+        // setFileList("")
+        const newData = [...myData]
+        console.log(newData[0]);
+        newData[0].profile.postsProfile.unshift(poste)
+        console.log(myData);
+    }
+    let like = true;
+    const likePost = () =>{
+        // like ? myData[0].profile.postsProfile.likes.push(1) : 
+        
+        const postLikes = myData[0].profile.postsProfile[0].likes;
+        if (like) {
+            // myData[0].profile.postsProfile[0].likes.push(1)
+            postLikes.push(1);
+            // console.log("messi");
+            // if(like){
+            //     like = false
+            // }else{
+            //     like = true
+            // }
+        }else{
+            // myData[0].profile.postsProfile[0].likes.splice(0,1)
+            // console.log("ronaldo");
+            postLikes.splice(0, 1);
+        }
+        like = !like;
     }
     // useEffect(() => {
     //     if (poste.description !== '') {
@@ -140,7 +170,7 @@ export const FirstSection = () => {
                     <div className='flex flex-col items-center py-3'>
                         <div className='w-[80%] bg-[#d2e2f1] rounded-xl  flex gap-16 p-3 flex-wrap'>
                             <img src={avatar} className='rounded-full w-[7%]' alt="avatar" />
-                            <input onChange={(e) => handlPostInput(e)} className='w-[70%] rounded-full focus:outline-none px-5' type="text" placeholder='Write Post' />
+                            <input onChange={(e) => handlPostInput(e)} value={postInput} className='w-[70%] rounded-full focus:outline-none px-5' type="text" placeholder='Write Post' />
                             <div className='flex justify-between items-center w-[100%] px-3'>
                                 <Button className='bg-[#1089f9] w-[17%] flex items-center font-bold text-white' onClick={showModal}>
                                     <AiFillPicture /> Upload
@@ -165,7 +195,7 @@ export const FirstSection = () => {
                                         />
                                     </Modal>
                                 </Modal>
-                                <BsSend onClick={tchitcharito} className='text-[#1089f9] cursor-pointer hover:text-[#35c635] text-4xl' />
+                                <BsSend onClick={submitPost} className='text-[#1089f9] cursor-pointer hover:text-[#35c635] text-4xl' />
                             </div>
                         </div>
                         <div className=' w-[80%] flex flex-col gap-1 mt-2 '>
@@ -179,10 +209,21 @@ export const FirstSection = () => {
                                             </div>
                                             <div className='w-[100%] flex flex-col justify-center '>
                                                 <p>{p.description}</p>
-                                                <img width={500} height={500} src={p.image} className={`${p.image ? "" : "hidden"}`} alt="" />
+                                                {(p.image.length > 1) ?
+                                                    <div className="h-56 sm:h-64 xl:h-80 2xl:h-96">
+                                                        <Carousel>
+                                                            {
+                                                                p.image.map((e, i) =>
+                                                                    <img key={i} src={URL.createObjectURL(e)} alt="..." />
+                                                                )
+                                                            }
+                                                        </Carousel>
+                                                    </div>
+                                                : <img width={500} height={500} src={p.image[0] instanceof Blob ? URL.createObjectURL(p.image[0]) : p.image[0]} className={`${p.image ? "" : "hidden"}`} alt="" />
+                                                    }
                                             </div>
                                             <div className='flex gap-4 w-[100%] px-3 font-bold'>
-                                                <span className='flex gap-2 items-center  cursor-pointer'><AiOutlineLike className='text-2xl ' /> <p className='text-xl'>{p.likes.length}</p> </span>
+                                                <span className='flex gap-2 items-center  cursor-pointer'><AiOutlineLike onClick={likePost} className='text-2xl ' /> <p className='text-xl'>{p.likes.length}</p> </span>
                                                 <span className='flex gap-2 items-center text-xl cursor-pointer'><FaRegCommentAlt /> </span>
                                                 <span className='flex gap-2 items-center text-2xl cursor-pointer'><RiShareForwardBoxFill /> </span>
                                             </div>
