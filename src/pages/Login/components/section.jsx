@@ -51,24 +51,24 @@ export const Section = () => {
             <div>
                 <h1 className='text-sky-500 text-6xl font-medium'>logo</h1>
             </div>
-            <form className="flex max-w-md flex-col gap-4 w-72">
+            <form className="flex max-w-md flex-col gap-4 w-[50vw] bg-sky-500 border-0 p-5">
                 <div>
-                    <h1 className='text-sky-500 text-center text-4xl font-medium'>Sign in</h1>
+                    <h1 className='text-white text-center text-4xl font-medium'>Sign in</h1>
                 </div>
                 <div>
                     <div className="mb-2 block">
-                        <Label htmlFor="username" value="Username" />
+                        <Label className="text-white" htmlFor="username" value="Username" />
                     </div>
                     <TextInput onChange={(e) => setNewusername(e.target.value)} id="username" type="text" placeholder="username" required />
                 </div>
                 <div>
                     <div className="mb-2 block">
-                        <Label htmlFor="password1" value="Your password" />
+                        <Label className="text-white" htmlFor="password1" value="Your password" />
                     </div>
                     <TextInput onChange={(e) => setNewPassword(e.target.value)} id="password1" placeholder="password" type="password" required />
                 </div>
                 <div className='flex justify-center'>
-                    <Button className='w-[20vw] bg-sky-500' onClick={(e) => { hello(e); filterElement(); }} type="submit">Submit</Button>
+                    <Button className='w-[20vw] text-sky-500 bg-white' onClick={(e) => { hello(e); filterElement(); }} type="submit">Submit</Button>
                 </div>
             </form>
         </div>
