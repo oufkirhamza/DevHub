@@ -22,6 +22,7 @@ export const Section = () => {
         lastName: 'Faras',
         email: 'Badr@gmail.com',
         bio: 'dima raja',
+        password: 'badr77'
        
     });
 
@@ -30,6 +31,7 @@ export const Section = () => {
         lastName: '',
         email: '',
         bio: '',
+        password: 'badr'
         
     });
 
@@ -68,41 +70,44 @@ export const Section = () => {
       const handleApplyButtonClick = () => {
         // Validate email format only for the email field
         if (tempChanges.email && !isValidEmail(tempChanges.email)) {
-          alert('Invalid email format');
-          return;
+            alert('Invalid email format');
+            // Clear the email input
+            setTempChanges((prevChanges) => ({
+                ...prevChanges,
+                email: '',
+            }));
+            return;
         }
-
-        
     
         if (password !== confirmPassword) {
-          setPasswordError(true);
-          alert("Password and Confirm Password do not match!");
-          return;
+            setPasswordError(true);
+            alert("Password and Confirm Password do not match!");
+            return;
         }
     
         // Clear password error when passwords match
         setPasswordError(false);
     
         setUserInfo((prevUserInfo) => ({
-          ...prevUserInfo,
-          ...Object.fromEntries(
-            Object.entries(tempChanges).filter(([key, value]) => value !== '')
-          ),
-          password: password, // Add password to userInfo
+            ...prevUserInfo,
+            ...Object.fromEntries(
+                Object.entries(tempChanges).filter(([key, value]) => value !== '')
+            ),
+            password: password, // Add password to userInfo
         }));
     
         // Clear the tempChanges after applying
         setTempChanges({
-          firstName: '',
-          lastName: '',
-          email: '',
-          bio: '',
+            firstName: '',
+            lastName: '',
+            email: '',
+            bio: '',
         });
     
         // Clear password and confirm password fields after applying
         setPassword('');
         setConfirmPassword('');
-      };
+    };
     return (
         <>
 
@@ -175,7 +180,7 @@ export const Section = () => {
                         <textarea onChange={(e) => handleUserInfoChange('bio', e.target.value)} value={tempChanges.bio} className='outline-none border-[1.5px] border-[#6978a04f] h-28 w-50 rounded-xl p-5 bg-[#f4f7fb] w-full' name="" id="" placeholder='New Bio'></textarea>
                     </div>
 
-                    <button onClick={handleApplyButtonClick} className='text-white bg-[#1089F9] p-3 rounded-full w-fit w-[100px] m-auto font-bold'>Apply</button>
+                    <button onClick={handleApplyButtonClick} className='text-white bg-[#1089F9] p-3 rounded-full w-fit w-[8vw] m-auto font-bold'>Apply</button>
                 </div>
 
 
