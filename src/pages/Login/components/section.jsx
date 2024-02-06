@@ -44,8 +44,6 @@ export const Section = () => {
             alert("Passwords do not match or there is a validation error.");
         }
     };
-
-
     return (
         <div className='bg-white h-[96vh] w-[[96vw]] justify-around flex items-center'>
             <div>
