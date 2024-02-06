@@ -76,41 +76,8 @@ export const MyProvider = ({ children }) => {
                 postsGroupes: [],
                 Products: [
 
-                    {
-                        id: 1,
-                        price: 10.99,
-                        description: "Do you need a web design for your product or service",
-                        category: "Web Design",
-                        city: "Paris",
-                        image: card
-
-                    },
-                    {
-                        id: 2,
-                        price: 10.99,
-                        description: "Do you need a web design for your product or service",
-                        category: "Web developpement",
-                        city: "Paris",
-                        image: card
-
-                    },{
-                        id: 3,
-                        price: 10.99,
-                        description: "Do you need a web design for your product or service",
-                        category: "Web Design",
-                        city: "Paris",
-                        image: card
-
-                    },{
-                        id: 4,
-                        price: 10.99,
-                        description: "Do you need a web design for your product or service",
-                        category: "Web Design",
-                        city: "Paris",
-                        image: card
-
-                    },
-
+                    
+                
 
 
                 ],
@@ -155,7 +122,7 @@ export const MyProvider = ({ children }) => {
                 postsGroupes: [],
                 Products: [
                     
-                   
+    
                 ],
                 groupes: [],
             },
@@ -221,7 +188,7 @@ export const MyProvider = ({ children }) => {
     )
     const [connected, setConnected] = useState( [
         {
-            id:"wissal",
+            id:"",
             userName: "user3",
             firstName: "user3",
             secondName: "user3",

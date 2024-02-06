@@ -41,7 +41,7 @@ export const Section = () => {
         e.preventDefault();
         filterElement();
         if (newPassword == vérpassword && newusername == vérusername) {
-            // navigate('/home')
+            navigate('/home')
         } else {
             alert("Passwords do not match or there is a validation error.");
         }
