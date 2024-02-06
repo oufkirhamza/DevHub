@@ -44,14 +44,7 @@ export const MyProvider = ({ children }) => {
                 postsProfile: [],
                 postsGroupes: [],
                 Products: [],
-                groupes: [
-                    // {
-                    //     groupeName:"hamza",
-                    //     members: [],
-                    //     accesPosts: [],
-                    //     id: 1,
-                    // },
-                ],
+                groupes: [],
             },
         },
         {
