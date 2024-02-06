@@ -1,7 +1,11 @@
 
 import React, { createContext, useState } from 'react'
 import avatar from "../assets/img/avatar-profile.jpg"
+<<<<<<< HEAD
 import { Header } from '../layouts/header'
+=======
+// import card from "../assets/img/Teach Online PNG Transparent, Online Teaching Linear Education Information, Chemistry Clipart, Computer, Online Education PNG Image For Free Download.jpeg"
+>>>>>>> 37ae8bcc446bca74e269d24612dabc6fe8dbb50f
 export const MyContext = createContext()
 export const MyProvider = ({ children }) => {
 
@@ -37,7 +41,11 @@ export const MyProvider = ({ children }) => {
                     },
                 ],
                 postsGroupes: [],
-                Products: [],
+                Products: [
+                    
+
+
+                ],
                 groupes: [],
             },
         },
@@ -71,7 +79,13 @@ export const MyProvider = ({ children }) => {
                     },
                 ],
                 postsGroupes: [],
-                Products: [],
+                Products: [
+
+                    
+
+
+
+                ],
                 groupes: [],
             },
         },
@@ -90,7 +104,9 @@ export const MyProvider = ({ children }) => {
                 followers: [],
                 postsProfile: [],
                 postsGroupes: [],
-                Products: [],
+                Products: [
+                    
+                ],
                 groupes: [],
             },
         },
@@ -109,7 +125,10 @@ export const MyProvider = ({ children }) => {
                 followers: [],
                 postsProfile: [],
                 postsGroupes: [],
-                Products: [],
+                Products: [
+                    
+                   
+                ],
                 groupes: [],
             },
         },
@@ -131,7 +150,9 @@ export const MyProvider = ({ children }) => {
                 followers: [],
                 postsProfile: [],
                 postsGroupes: [],
-                Products: [],
+                Products: [
+
+                ],
                 groupes: [],
             },
         }
