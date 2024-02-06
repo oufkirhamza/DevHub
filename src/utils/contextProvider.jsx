@@ -221,6 +221,7 @@ export const MyProvider = ({ children }) => {
     )
     const [connected, setConnected] = useState( [
         {
+            id:"wissal",
             userName: "user3",
             firstName: "user3",
             secondName: "user3",
