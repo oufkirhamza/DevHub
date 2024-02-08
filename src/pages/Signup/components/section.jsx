@@ -9,7 +9,7 @@ import { MyContext } from '../../../utils/contextProvider';
 
 export const Section = () => {
     const [myData, setMyData] = useContext(MyContext)
-    
+
     const navigate = useNavigate();
 
     const formatName = (name) => {
@@ -20,7 +20,7 @@ export const Section = () => {
         return formattedName;
     }
 
-    
+
     const [username, setusername] = useState("");
     const [firstname, setfirstname] = useState("");
     const [lasttname, setlastname] = useState("");
@@ -29,12 +29,12 @@ export const Section = () => {
     const [password, setpassword] = useState("");
     const [repeat, setrepeat] = useState("");
     const [validatedEmail, setValidatedEmail] = useState("");
-    const [validatedPassword, setValidatedPassword] = useState(""); 
+    const [validatedPassword, setValidatedPassword] = useState("");
     const [dateDeNaissance, setdateDeNaissance] = useState("");
     const [Vérusername, setVérUsername] = useState("");
-    
+
     class users {
-        constructor(username, email, password, firstname, lastname , phone ,date) {
+        constructor(username, email, password, firstname, lastname, phone, date) {
             this.username = username
             this.email = email
             this.password = password
@@ -78,7 +78,7 @@ export const Section = () => {
     const hello = (e) => {
         e.preventDefault();
         filterElement();
-        
+
 
         // Validate and prompt for email
         const validateEmail = (inputEmail) => {
@@ -97,7 +97,7 @@ export const Section = () => {
             return; // Stop the function if password is not valid
         }
 
-    
+
 
         if (password && repeat && password === repeat && validateEmail(email)) {
             const formattedUsername = formatName(username);
@@ -179,14 +179,14 @@ export const Section = () => {
                 </form>
                 <div className='flex justify-center pt-4'>
                     <Button className='w-[20vw] bg-sky-500' onClick={(e) => {
-                            PushArray();
-                            hello(e);
-                            filterElement();
-                        }} type="submit">
-                            Submit
+                        PushArray();
+                        hello(e);
+                        filterElement();
+                    }} type="submit">
+                        Submit
                     </Button>
                 </div>
-                
+
             </Card>
         </div>
     );

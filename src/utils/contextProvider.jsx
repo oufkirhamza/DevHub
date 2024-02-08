@@ -174,8 +174,11 @@ export const MyProvider = ({ children }) => {
             }
     )
 
+    console.log(myData);
+
     return (
         <>
+
             
 
             <MyContext.Provider value={[myData, setMyData, user, setUser, product, setProduct, poste, setPoste, comment, setComment, groupe, setGroupe]} >
