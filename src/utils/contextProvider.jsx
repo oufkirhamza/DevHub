@@ -1,10 +1,10 @@
 
 import React, { createContext, useState } from 'react'
 import avatar from "../assets/img/attachment_119362573.png"
-import card from "../assets/img/Teach Online PNG Transparent, Online Teaching Linear Education Information, Chemistry Clipart, Computer, Online Education PNG Image For Free Download.jpeg"
+import { Header } from '../layouts/header'
+// import card from "../assets/img/Teach Online PNG Transparent, Online Teaching Linear Education Information, Chemistry Clipart, Computer, Online Education PNG Image For Free Download.jpeg"
 export const MyContext = createContext()
 export const MyProvider = ({ children }) => {
-
     // const [test, setTest] = useState('Hello Test')
     const [myData, setMyData] = useState([
         {
@@ -42,37 +42,11 @@ export const MyProvider = ({ children }) => {
                 postsProfile: [],
                 postsGroupes: [],
                 Products: [
-                    {
-                        id: 1,
-                        price: 10.99,
-                        description: "Do you need a web design for your product or service",
-                        category: "Web Design",
-                        city: "Paris",
-                        image: card
 
-                    },
-                    {
-                        id: 1,
-                        price: 10.99,
-                        description: "Do you need a web design for your product or service",
-                        category: "Web developpement",
-                        city: "Paris",
-                        image: card
-                    },{
-                        id: 1,
-                        price: 10.99,
-                        description: "Do you need a web design for your product or service",
-                        category: "Web Design",
-                        city: "Paris",
-                        image: card
-                    },{
-                        id: 1,
-                        price: 10.99,
-                        description: "Do you need a web design for your product or service",
-                        category: "Web Design",
-                        city: "Paris",
-                        image: card
-                    },
+                    
+                
+
+
                 ],
                 groupes: [],
             },
@@ -111,7 +85,10 @@ export const MyProvider = ({ children }) => {
                 followers: [],
                 postsProfile: [],
                 postsGroupes: [],
-                Products: [],
+                Products: [
+                    
+    
+                ],
                 groupes: [],
             },
         },
