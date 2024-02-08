@@ -1,7 +1,6 @@
 
 import React, { createContext, useState } from 'react'
 import avatar from "../assets/img/attachment_119362573.png"
-import { Header } from '../layouts/header'
 import card from "../assets/img/Teach Online PNG Transparent, Online Teaching Linear Education Information, Chemistry Clipart, Computer, Online Education PNG Image For Free Download.jpeg"
 export const MyContext = createContext()
 export const MyProvider = ({ children }) => {
@@ -21,27 +20,10 @@ export const MyProvider = ({ children }) => {
                 bio: "If the automobile had followed the same development cycle as the computer, a Rolls-Royce would today cost $100, get a million miles per gallon, and explode once a year, killing everyone inside.",
                 following: [1],
                 followers: [],
-                postsProfile: [
-                    {
-                        id: "",
-                        image: [avatar],
-                        description: "messi",
-                        likes: [1, 1, 1, 1],
-                        comments: [],
-                    },
-                    {
-                        id: "",
-                        image: [avatar],
-                        description: "",
-                        likes: [1, 1, 1, 1, 1, 1, 1, 1],
-                        comments: [],
-                    },
-                ],
+                postsProfile: [],
                 postsGroupes: [],
                 Products: [],
-                groupes: [
-                
-                ],
+                groupes: [],
             },
         },
         {
@@ -57,25 +39,9 @@ export const MyProvider = ({ children }) => {
                 bio: "If the automobile had followed the same development cycle as the computer, a Rolls-Royce would today cost $100, get a million miles per gallon, and explode once a year, killing everyone inside.",
                 following: [],
                 followers: [],
-                postsProfile: [
-                    {
-                        id: "",
-                        image: [avatar],
-                        description: "nhar m3a l3chran",
-                        likes: [1, 1, 1],
-                        comments: [],
-                    },
-                    {
-                        id: "",
-                        image: "",
-                        description: "nhar m3a l3chran",
-                        likes: [1, 1, 1],
-                        comments: [],
-                    },
-                ],
+                postsProfile: [],
                 postsGroupes: [],
                 Products: [
-
                     {
                         id: 1,
                         price: 10.99,
@@ -92,7 +58,6 @@ export const MyProvider = ({ children }) => {
                         category: "Web developpement",
                         city: "Paris",
                         image: card
-
                     },{
                         id: 1,
                         price: 10.99,
@@ -100,7 +65,6 @@ export const MyProvider = ({ children }) => {
                         category: "Web Design",
                         city: "Paris",
                         image: card
-
                     },{
                         id: 1,
                         price: 10.99,
@@ -108,11 +72,7 @@ export const MyProvider = ({ children }) => {
                         category: "Web Design",
                         city: "Paris",
                         image: card
-
                     },
-
-
-
                 ],
                 groupes: [],
             },
@@ -132,9 +92,7 @@ export const MyProvider = ({ children }) => {
                 followers: [],
                 postsProfile: [],
                 postsGroupes: [],
-                Products: [
-                    
-                ],
+                Products: [],
                 groupes: [],
             },
         },
@@ -153,8 +111,7 @@ export const MyProvider = ({ children }) => {
                 followers: [],
                 postsProfile: [],
                 postsGroupes: [],
-                Products: [
-                ],
+                Products: [],
                 groupes: [],
             },
         },
@@ -176,9 +133,7 @@ export const MyProvider = ({ children }) => {
                 followers: [],
                 postsProfile: [],
                 postsGroupes: [],
-                Products: [
-
-                ],
+                Products: [],
                 groupes: [],
             },
         }
@@ -197,7 +152,7 @@ export const MyProvider = ({ children }) => {
     const [poste, setPoste] = useState(
         {
             id: "",
-            image: "",
+            image: [],
             description: "",
             likes: [],
             comments: [],
@@ -205,8 +160,9 @@ export const MyProvider = ({ children }) => {
     )
     const [comment, setComment] = useState(
         {
+            id:"",
             userName: "",
-            descriptio: "",
+            description: "",
         }
     )
     const [groupe, setGroupe] = useState(
