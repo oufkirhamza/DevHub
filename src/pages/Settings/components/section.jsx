@@ -144,7 +144,7 @@ export const Section = () => {
     return (
         <>
             {/* navbar */}
-            <div className='bg-[#1089F9] flex items-center  p-5 justify-between'>
+            {/* <div className='bg-[#1089F9] flex items-center  p-5 justify-between'>
                 <Link className='text-2xl font-bold text-white' to={'/'}>DevHub</Link>
 
                 <div className='navbar flex justify-around w-[40%]'>
@@ -159,10 +159,10 @@ export const Section = () => {
                 </div>
                 <input className='w-[40%] p-1 px-3 rounded-full border-none outline-none font-mono' type="text" placeholder='search freinds' />
                 <RiLogoutBoxLine className='text-[#F9FAFB] text-2xl cursor-pointer' />
-            </div>
+            </div> */}
 
             {/* sec-1 pic & name */}
-            <div className='flex flex-row justify-center gap-16 items-center  p-10 bg-white rounded-xl w-[700px] m-auto '>
+            <div className='flex flex-row justify-center gap-16 items-center  p-10 bg-[#030712] border-2 border-[#f9fafb4c] text-white rounded-xl w-[700px] m-auto pt-[15vh]'>
 
                 {/* <img className='object-cover h-[200px] w-[200px] rounded-full ' src={(image)} alt="" /> */}
                 <div class="input-div ">
@@ -217,9 +217,9 @@ export const Section = () => {
 
 
 
-                <div className=' flex flex-col gap-3 bg-white rounded-xl p-3 w-[700px] m-auto p-5'>
+                <div className=' flex flex-col gap-3 bg-[#030712] border-2 border-[#f9fafb4c] text-white rounded-xl  w-[700px] m-auto p-5'>
                     <h1 className='text-center  text-xl font-bold '>User Infos :</h1>
-                    <input onChange={(e) => handleUserInfoChange('firstName', e.target.value)} value={tempChanges.firstName} className=' outline-none border-[1.5px] border-[#6978a04f] h-14 w-50 rounded-xl p-5 bg-[#f4f7fb]' type="text" placeholder='New FirstName' />
+                    <input onChange={(e) => handleUserInfoChange('firstName', e.target.value)} value={tempChanges.firstName} className=' outline-none border-[1.5px] border-[#6978a04f] h-14 w-50 rounded-xl p-5 bg-[#1f2224]' type="text" placeholder='New FirstName' />
                     <input onChange={(e) => handleUserInfoChange('lastName', e.target.value)} value={tempChanges.lastName} className='outline-none border-[1.5px] border-[#6978a04f] h-14 w-50 rounded-xl p-5 bg-[#f4f7fb]' type="text" placeholder='New LastName' />
                     <input onChange={(e) => handleUserInfoChange('email', e.target.value)} value={tempChanges.email} className='outline-none border-[1.5px] border-[#6978a04f] h-14 w-50 rounded-xl p-5 bg-[#f4f7fb]' type="text" placeholder='New Email' />
                     <div className='flex flex-row gap-3 '>
@@ -230,7 +230,7 @@ export const Section = () => {
                         <textarea onChange={(e) => handleUserInfoChange('bio', e.target.value)} value={tempChanges.bio} className='outline-none border-[1.5px] border-[#6978a04f] h-28 w-50 rounded-xl p-5 bg-[#f4f7fb] w-full' name="" id="" placeholder='New Bio'></textarea>
                     </div>
 
-                    <button onClick={handleApplyButtonClick} className='text-white bg-[#1089F9] p-3 rounded-full w-fit w-[8vw] m-auto font-bold'>Apply</button>
+                    <button onClick={handleApplyButtonClick} className='text-white bg-[#6D28D9] p-3 rounded-full w-fit w-[8vw] m-auto font-bold'>Apply</button>
                 </div>
 
 
