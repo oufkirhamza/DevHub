@@ -1,6 +1,6 @@
 
 import React, { createContext, useState } from 'react'
-import avatar from "../assets/img/avatar-profile.jpg"
+import avatar from "../assets/img/attachment_119362573.png"
 import { Header } from '../layouts/header'
 import card from "../assets/img/Teach Online PNG Transparent, Online Teaching Linear Education Information, Chemistry Clipart, Computer, Online Education PNG Image For Free Download.jpeg"
 export const MyContext = createContext()
@@ -154,8 +154,6 @@ export const MyProvider = ({ children }) => {
                 postsProfile: [],
                 postsGroupes: [],
                 Products: [
-                    
-                   
                 ],
                 groupes: [],
             },
