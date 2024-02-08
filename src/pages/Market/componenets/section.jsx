@@ -8,10 +8,20 @@ import { Button, Modal } from 'flowbite-react';
 import { Footer } from 'flowbite-react';
 import { BsDribbble, BsFacebook, BsGithub, BsInstagram, BsTwitter } from 'react-icons/bs';
 import ads from '../../../assets/img/digital.png'
+import { FaHome } from 'react-icons/fa';
+// import logo from '../assets/img/pngegg (2).png'
+import { FaUser } from "react-icons/fa";
+import { FaUserPlus } from "react-icons/fa6";
+import { MdLocalGroceryStore } from "react-icons/md";
+import { IoIosSettings } from "react-icons/io";
+import { HiUserGroup } from "react-icons/hi2";
+import { RiLogoutBoxLine } from "react-icons/ri";
+// import webDevLogo from '../assets/img/webdev_logo.png'
 
 export const Section = ({ data }) => {
     const [myData, setMyData] = useContext(MyContext);
     const connectedUser = myData[0];
+    console.log(connectedUser);
     const [selectedCategories, setSelectedCategories] = useState([]);
     const [searchText, setSearchText] = useState('');
     const [openModal, setOpenModal] = useState(false);
@@ -39,7 +49,6 @@ export const Section = ({ data }) => {
         setCategory('');
         setFile('');
     };
-    console.log(product);
     const handleCategoryChange = (category) => {
         if (selectedCategories.includes(category)) {
             setSelectedCategories(selectedCategories.filter(element => element === category));
@@ -101,20 +110,32 @@ export const Section = ({ data }) => {
         clearInputs();
 
     }
-    const removeProduct = (productId , user) => {
-        const connectedUser = myData.find(userData => userData.userName === user.userName);
-        const productIndex = connectedUser.profile.Products.findIndex(prod => prod.id === productId);
-        if (productIndex !== -1) {
-            connectedUser.profile.Products.splice(productIndex, 1);
-            setMyData([...myData]); 
-        } else {
-            alert("Vous n'êtes pas autorisé à supprimer ce produit");
-        }
+    const removeProduct = (product) => {
+
 
     };
-
     return (
         <>
+            {/* navbar */}
+            <div className='nav bg-[#030712] fixed top-0 w-[100%] z-50  flex items-center py-3 px-5 justify-between  shadow-lg shadow-[#6c28d955]'>
+                <Link className='text-xl font-bold text-[#bcbcbc] hover:text-[#F9FAFB]' to={'/home'}><img width={50} alt="logo" /></Link>
+
+
+                <div className='navbar flex justify-around w-[40%]'>
+                    <Link className='text-[#bcbcbc] hover:text-[#F9FAFB] text-2xl' to={'/home'}><FaHome /></Link>
+                    <Link className='text-[#bcbcbc] hover:text-[#F9FAFB] text-2xl' to={'/profile'}><FaUser /> </Link>
+                    <Link className='text-[#bcbcbc] hover:text-[#F9FAFB] text-2xl' to={'/market'}><MdLocalGroceryStore /></Link>
+                    <Link className='text-[#bcbcbc] hover:text-[#F9FAFB] text-2xl' to={'/suggestions'}><FaUserPlus /></Link>
+                    <Link className='text-[#bcbcbc] hover:text-[#F9FAFB] text-2xl' to={'/groupes'}><HiUserGroup /></Link>
+                    {/* <Link className='text-[#F9FAFB] text-2xl' to={'/'}>Signup</Link>
+                    <Link className='text-[#F9FAFB] text-2xl' to={'/login'}>login</Link> */}
+                </div>
+                <input className='w-[40%] p-1 px-3 rounded-full border-none outline-none font-mono' type="text" placeholder='search freinds' />
+                <div className='flex gap-2'>
+                    <RiLogoutBoxLine className='text-[#F9FAFB] text-2xl cursor-pointer' />
+                    <Link className='text-[#bcbcbc] hover:text-[#F9FAFB] text-2xl' to={'/settings'}><IoIosSettings /></Link>
+                </div>
+            </div>
             <div className='h-[9vh] flex justify-center items-center bg-[#030712]   '>
                 <h3 className='font-bold text-2xl font-mono  '>New Year , New skills .. GET YOUR COURSE WITH -10% :) </h3>
             </div>
@@ -199,26 +220,45 @@ export const Section = ({ data }) => {
                                 {myData.map(element =>
                                     element.profile.Products.map(e =>
                                         <div>
-                                            <div key={e.id} className="bg-white  h-[60vh] w-[18vw] p-2 rounded-lg shadow-md flex flex-col justify-between hover:scale-105 duration-700 ">
-                                                <button onClick={() => removeProduct(e.id )} className={` ${element.profile.Products.includes(e) ? "" : "hidden"} font-mono font-bold text-xl`} >supp</button>
+                                            <div key={e.id} className="bg-white  h-[60vh] w-[18vw] p-2 rounded-lg shadow-md flex relative flex-col justify-between hover:scale-105 duration-700 ">
+                                                <button onClick={() => removeProduct(e.id)} className={` ${element.profile.Products.includes(e) ? "" : "hidden"} absolute top-2 right-2 font-mono font-bold text-xl`} ><button
+                                                    title="Add New"
+                                                    class="group cursor-pointer outline-none hover:rotate-90 duration-300"
+                                                >
+                                                    <svg
+                                                        xmlns="http://www.w3.org/2000/svg"
+                                                        width="50px"
+                                                        height="50px"
+                                                        viewBox="0 0 24 24"
+                                                        class="stroke-zinc-400 fill-none group-hover:fill-zinc-800 group-active:stroke-zinc-200 group-active:fill-zinc-600 group-active:duration-0 duration-300"
+                                                    >
+                                                        <path
+                                                            d="M12 22C17.5 22 22 17.5 22 12C22 6.5 17.5 2 12 2C6.5 2 2 6.5 2 12C2 17.5 6.5 22 12 22Z"
+                                                            stroke-width="1.5"
+                                                        ></path>
+                                                        <path d="M8 12H16" stroke-width="1.5"></path>
+                                                        <path d="M12 16V8" stroke-width="1.5"></path>
+                                                    </svg>
+                                                </button>
+                                                </button>
                                                 <img src={e.image} className='rounded-lg h-[45vh] w-[100%]' alt="" />
                                                 <div className='flex justify-between '>
-                                                <div className=' w-[70%]'>
+                                                    <div className=' w-[70%]'>
 
-                                                <p className='text-2xl font-bold'> {e.price} € <span className='text-gray-500 line-through text-sm'>{e.price}€</span></p>
-                                                <p> <span className='font-bold text-xl'></span>{e.name}</p>
-                                                <p><span className='font-bold text-xl'></span> {e.category}</p>
-                                                <p className='flex  '><FaStar className='text-yellow-300' /><FaStar className='text-yellow-300' /><FaStar className='text-yellow-300' /><FaStar /><FaStar /></p>
-                                                </div>
+                                                        <p className='text-2xl font-bold'> {e.price} € <span className='text-gray-500 line-through text-sm'>{e.price}€</span></p>
+                                                        <p> <span className='font-bold text-xl'></span>{e.name}</p>
+                                                        <p><span className='font-bold text-xl'></span> {e.category}</p>
+                                                        <p className='flex  '><FaStar className='text-yellow-300' /><FaStar className='text-yellow-300' /><FaStar className='text-yellow-300' /><FaStar /><FaStar /></p>
+                                                    </div>
 
-                                                <div className=' flex flex-col justify-end' >
+                                                    <div className=' flex flex-col justify-end' >
 
-                                                    <Link to={`/Products/${e.id}`} >
-                                                        <div className=' flex justify-end '>
-                                                            <button className='bg-purple-600 text-white py-1 px-2 rounded-xl' >More...</button>
-                                                        </div>
-                                                    </Link>
-                                                </div>
+                                                        <Link to={`/Products/${e.id}`} >
+                                                            <div className=' flex justify-end '>
+                                                                <button className='bg-purple-600 text-white py-1 px-2 rounded-xl' >More...</button>
+                                                            </div>
+                                                        </Link>
+                                                    </div>
                                                 </div>
                                             </div>
 

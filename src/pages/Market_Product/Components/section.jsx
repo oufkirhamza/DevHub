@@ -14,7 +14,7 @@ export const Section = () => {
             <div className='bg-gray-400 h-screen flex items-center justify-center font-mono'>
                 <div className='bg-white h-[80%] w-[80%] flex'>
                     <div className=' w-[70%] h-[100%] flex gap-4'>
-                        <div className='flex flex-col  gap-3 '>
+                        <div className='flex flex-col  gap-3  w-[10vw] ml-4'>
                             <img src={product.image} alt="" className='h-[138px] w-[110px]' />
                             <img src={product.image} alt="" className='h-[138px] w-[110px]' />
                             <img src={product.image} alt="" className='h-[138px] w-[110px]' />
