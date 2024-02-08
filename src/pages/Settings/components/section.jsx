@@ -1,15 +1,23 @@
 import React, { useContext, useState } from 'react';
 import "./section.sass"
 import Test_pic from "../../../assets/img/profile-pic-test.jpg"
-import { useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { FaHome } from "react-icons/fa";
+import { FaUser } from "react-icons/fa";
+import { FaUserPlus } from "react-icons/fa6";
+import { MdLocalGroceryStore } from "react-icons/md";
+import { IoIosSettings } from "react-icons/io";
+import { HiUserGroup } from "react-icons/hi2";
+import { RiLogoutBoxLine } from "react-icons/ri";
 
 export const Section = () => {
-    const [profileImg, setprofileImg] = useState([]);
+    const [profileImg, setProfileImg] = useState([]);
     const [image, setImage] = useState(null);
-
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
+    const [newPassword, setNewPassword] = useState('');
     const [passwordError, setPasswordError] = useState(false);
+    const [newPasswordPolicyError, setNewPasswordPolicyError] = useState(false);
 
     const handlechange = (e) => {
         const selectedImage = e.target.files[0];
@@ -22,7 +30,8 @@ export const Section = () => {
         lastName: 'Faras',
         email: 'Badr@gmail.com',
         bio: 'dima raja',
-       
+        password: 'badr77'
+
     });
 
     const [tempChanges, setTempChanges] = useState({
@@ -30,84 +39,139 @@ export const Section = () => {
         lastName: '',
         email: '',
         bio: '',
-        
+        password: ''
+
     });
 
     const handleUserInfoChange = (field, value) => {
         if (field === 'firstName' || field === 'lastName') {
-          // Limit the input to 10 characters
-          if (value.length > 10) {
-            alert(`The ${field === 'firstName' ? 'First Name' : 'Last Name'} cannot be more than 10 characters.`);
-            return;
-          }
+            // Limit the input to 10 characters
+            if (value.length > 10) {
+                alert(`The ${field === 'firstName' ? 'First Name' : 'Last Name'} cannot be more than 10 characters.`);
+                return;
+            }
         } else if (field === 'email' || field === 'bio') {
-          // Limit the input to 20 characters
-          if (value.length > 30) {
-            alert(`The ${field === 'email' ? 'Email' : 'Bio'} cannot be more than 30 characters.`);
-            return;
-          }
+            // Limit the input to 30 characters
+            if (value.length > 30) {
+                alert(`The ${field === 'email' ? 'Email' : 'Bio'} cannot be more than 30 characters.`);
+                return;
+            }
         }
     
         // Handle password change separately
         if (field === 'password') {
-          setPassword(value);
+            setPassword(value);
+        } else if (field === 'newPassword') {
+            setNewPassword(value);
+    
+            // Validate the new password only if the field is 'newPassword'
+            const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{7,}$/;
+    
+            if (!passwordRegex.test(value) && value !== '') {
+                setNewPasswordPolicyError(true);
+            } else {
+                setNewPasswordPolicyError(false);
+            }
         } else {
-          setTempChanges((prevChanges) => ({
-            ...prevChanges,
-            [field]: value,
-          }));
+            setTempChanges((prevChanges) => ({
+                ...prevChanges,
+                [field]: value,
+            }));
         }
-      };
+    };
+    
 
-      const isValidEmail = (email) => {
+    const isValidEmail = (email) => {
         const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return emailPattern.test(email);
-      };
+    };
 
 
-      const handleApplyButtonClick = () => {
+    const handleApplyButtonClick = () => {
         // Validate email format only for the email field
         if (tempChanges.email && !isValidEmail(tempChanges.email)) {
-          alert('Invalid email format');
-          return;
+            alert('Invalid email format');
+            // Clear the email input
+            setTempChanges((prevChanges) => ({
+                ...prevChanges,
+                email: '',
+            }));
+            return;
         }
 
-        
+        // Check if a new password is provided
+        if (password !== '' && password !== userInfo.password) {
+            setPasswordError(true);
+            alert('Current password is incorrect!');
+            setPassword('');
+            setConfirmPassword('');
+            return;
+        }
+
+        // Check new password policy
+        if (newPasswordPolicyError) {
+            alert('New password must be at least 7 characters and contain a mix of uppercase, lowercase, and numbers.');
+            
+            // Clear the new password input
+            setNewPassword('');
     
-        if (password !== confirmPassword) {
-          setPasswordError(true);
-          alert("Password and Confirm Password do not match!");
-          return;
+            return;
         }
     
         // Clear password error when passwords match
         setPasswordError(false);
     
+        // Update userInfo with new values
         setUserInfo((prevUserInfo) => ({
-          ...prevUserInfo,
-          ...Object.fromEntries(
-            Object.entries(tempChanges).filter(([key, value]) => value !== '')
-          ),
-          password: password, // Add password to userInfo
+            ...prevUserInfo,
+            ...Object.fromEntries(
+                Object.entries(tempChanges).filter(([key, value]) => value !== '')
+            ),
+            password: newPassword !== '' ? newPassword : prevUserInfo.password,
         }));
     
         // Clear the tempChanges after applying
         setTempChanges({
-          firstName: '',
-          lastName: '',
-          email: '',
-          bio: '',
+            firstName: '',
+            lastName: '',
+            email: '',
+            bio: '',
+            password: '', // Clear the temporary password value
         });
     
         // Clear password and confirm password fields after applying
         setPassword('');
         setConfirmPassword('');
-      };
+    
+        // Clear the new password input
+        setNewPassword('');
+    };
+
     return (
         <>
+            {/* navbar */}
+            <div className='nav bg-[#030712] fixed top-0 w-[100%] z-50  flex items-center py-3 px-5 justify-between shadow shadow-lg shadow-[#6c28d955]'>
+                <Link className='text-xl font-bold text-[#bcbcbc] hover:text-[#F9FAFB]' to={'/'}>DevHub</Link>
+                
+                <div className='navbar flex justify-around w-[40%]'>
+                    <Link className='text-[#bcbcbc] hover:text-[#F9FAFB] text-2xl' to={'/home'}><FaHome /></Link>
+                    <Link className='text-[#bcbcbc] hover:text-[#F9FAFB] text-2xl' to={'/profile'}><FaUser /> </Link>
+                    <Link className='text-[#bcbcbc] hover:text-[#F9FAFB] text-2xl' to={'/market'}><MdLocalGroceryStore /></Link>
+                    <Link className='text-[#bcbcbc] hover:text-[#F9FAFB] text-2xl' to={'/suggestions'}><FaUserPlus /></Link>
+                    <Link className='text-[#bcbcbc] hover:text-[#F9FAFB] text-2xl' to={'/settings'}><IoIosSettings /></Link>
+                    <Link className='text-[#bcbcbc] hover:text-[#F9FAFB] text-2xl' to={'/groupes'}><HiUserGroup /></Link>
+                    {/* <Link className='text-[#F9FAFB] text-2xl' to={'/'}>Signup</Link>
+                    <Link className='text-[#F9FAFB] text-2xl' to={'/login'}>login</Link> */}
+                </div>
+                <input className='w-[40%] p-1 px-3 rounded-full border-none outline-none font-mono' type="text" placeholder='search freinds' />
+                <div className='flex gap-2'>
+                <RiLogoutBoxLine className='text-[#F9FAFB] text-2xl cursor-pointer' />
+                <Link className='text-[#bcbcbc] hover:text-[#F9FAFB] text-2xl' to={'/settings'}><IoIosSettings /></Link>
+                </div>
+            </div>
 
             {/* sec-1 pic & name */}
-            <div className='flex flex-row justify-center gap-16 items-center  p-10 bg-white rounded-xl w-[700px] m-auto '>
+            <div className='flex flex-row justify-center gap-16 items-center  p-10 bg-[#030712] border-2 border-[#f9fafb4c] text-white rounded-xl w-[700px] m-auto mt-[10vh]'>
 
                 {/* <img className='object-cover h-[200px] w-[200px] rounded-full ' src={(image)} alt="" /> */}
                 <div class="input-div ">
@@ -128,25 +192,25 @@ export const Section = () => {
                         <tr>
                             <td class='text-xl font-bold ps-5'>FirstName:</td>
                             <td class='text-xl opacity-75 ps-5'>
-                            {userInfo.firstName.length > 10 ? userInfo.firstName.substring(0, 10) + '...' : userInfo.firstName}
+                                {userInfo.firstName.length > 10 ? userInfo.firstName.substring(0, 10) + '...' : userInfo.firstName}
                             </td>
                         </tr>
                         <tr>
                             <td class='text-xl font-bold ps-5'>LastName:</td>
                             <td class='text-xl opacity-75 ps-5'>
                                 {userInfo.lastName.length > 10 ? userInfo.lastName.substring(0, 10) + '...' : userInfo.lastName}
-                                </td>
+                            </td>
                         </tr>
                         <tr>
                             <td class='text-xl font-bold ps-5'>Email:</td>
                             <td class='text-xl opacity-75 ps-5'>
-                            {userInfo.email.length > 10 ? userInfo.email.substring(0, 10) + '...' : userInfo.email}
+                                {userInfo.email.length > 10 ? userInfo.email.substring(0, 10) + '...' : userInfo.email}
                             </td>
                         </tr>
                         <tr>
                             <td class='text-xl font-bold ps-5'>Bio:</td>
                             <td class='text-xl opacity-75 ps-5'>
-                            {userInfo.bio.length > 10 ? userInfo.bio.substring(0, 10) + '...' : userInfo.bio}
+                                {userInfo.bio.length > 10 ? userInfo.bio.substring(0, 10) + '...' : userInfo.bio}
                             </td>
                         </tr>
                     </table>
@@ -162,20 +226,20 @@ export const Section = () => {
 
 
 
-                <div className=' flex flex-col gap-3 bg-white rounded-xl p-3 w-[700px] m-auto p-5'>
-                    <h1 className='text-center  text-xl font-bold '>User Infos :</h1>
+                <div className=' flex flex-col gap-3 bg-[#030712] border-2 border-[#f9fafb4c]  rounded-xl  w-[700px] m-auto p-5'>
+                    <h1 className='text-center text-white text-xl font-bold '>User Infos :</h1>
                     <input onChange={(e) => handleUserInfoChange('firstName', e.target.value)} value={tempChanges.firstName} className=' outline-none border-[1.5px] border-[#6978a04f] h-14 w-50 rounded-xl p-5 bg-[#f4f7fb]' type="text" placeholder='New FirstName' />
                     <input onChange={(e) => handleUserInfoChange('lastName', e.target.value)} value={tempChanges.lastName} className='outline-none border-[1.5px] border-[#6978a04f] h-14 w-50 rounded-xl p-5 bg-[#f4f7fb]' type="text" placeholder='New LastName' />
                     <input onChange={(e) => handleUserInfoChange('email', e.target.value)} value={tempChanges.email} className='outline-none border-[1.5px] border-[#6978a04f] h-14 w-50 rounded-xl p-5 bg-[#f4f7fb]' type="text" placeholder='New Email' />
                     <div className='flex flex-row gap-3 '>
                         <input onChange={(e) => handleUserInfoChange('password', e.target.value)} value={password} className='outline-none border-[1.5px] border-[#6978a04f] h-14 w-full rounded-xl p-5 bg-[#f4f7fb]' type="password" placeholder='Current password' />
-                        <input onChange={(e) => setConfirmPassword(e.target.value)} value={confirmPassword} className='outline-none border-[1.5px] border-[#6978a04f] h-14 w-full rounded-xl p-5 bg-[#f4f7fb]' type="password" placeholder='New password' />
+                        <input onChange={(e) => handleUserInfoChange('newPassword', e.target.value)} value={newPassword} className='outline-none border-[1.5px] border-[#6978a04f] h-14 w-full rounded-xl p-5 bg-[#f4f7fb]' type="password" placeholder='New password' />
                     </div>
                     <div>
                         <textarea onChange={(e) => handleUserInfoChange('bio', e.target.value)} value={tempChanges.bio} className='outline-none border-[1.5px] border-[#6978a04f] h-28 w-50 rounded-xl p-5 bg-[#f4f7fb] w-full' name="" id="" placeholder='New Bio'></textarea>
                     </div>
 
-                    <button onClick={handleApplyButtonClick} className='text-white bg-[#1089F9] p-3 rounded-full w-fit w-[100px] m-auto font-bold'>Apply</button>
+                    <button onClick={handleApplyButtonClick} className='text-white bg-[#6D28D9] p-3 rounded-full w-fit w-[7vw] m-auto font-bold'>Apply</button>
                 </div>
 
 
