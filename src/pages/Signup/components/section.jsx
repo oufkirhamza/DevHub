@@ -4,11 +4,12 @@ import { Alert, Button, Card, Label, TextInput } from 'flowbite-react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { MyContext } from '../../../utils/contextProvider';
+import logo from "../../../assets/img/Website_Creator-amico.png"
 
 
 
 export const Section = () => {
-    const [myData, setMyData] = useContext(MyContext)
+    const [myData, setMyData, user, setUser, product, setProduct, poste, setPoste, comment, setComment, groupe, setGroupe, connectedUser, setConnectedUser] = useContext(MyContext)
     
     const navigate = useNavigate();
 
@@ -23,7 +24,7 @@ export const Section = () => {
     
     const [username, setusername] = useState("");
     const [firstname, setfirstname] = useState("");
-    const [lasttname, setlastname] = useState("");
+    const [lastname, setlastname] = useState("");
     const [phone, setphone] = useState("");
     const [email, setemail] = useState("");
     const [password, setpassword] = useState("");
@@ -33,57 +34,34 @@ export const Section = () => {
     const [dateDeNaissance, setdateDeNaissance] = useState("");
     const [Vérusername, setVérUsername] = useState("");
     
-    class users {
-        constructor(username, email, password, firstname, lastname , phone ,date) {
-            this.username = username
-            this.email = email
-            this.password = password
-            this.firstname = firstname
-            this.lastname = lastname
-            this.phone = phone
-            this.date = date
-        }
-    }
 
-    const user = new users();
-    user.username = username;
-    user.email = email;
-    user.password = password;
-    user.firstname = firstname;
-    user.lastname = lasttname;
-    user.phone = phone;
-    user.date = dateDeNaissance;
+    // const filterElement = () => {
+    //     console.log("User's username:", user.username);
+    //     console.log("myData:", myData);
+    
+    //     let filteredUser = myData.filter(element => element.username === user.username);
+    //     console.log("Filtered User:", filteredUser);
+    //     setVérUsername(filteredUser.length > 0 ? filteredUser[0].username : "");
+    // };
+    
+    
+        const hello = (e) => {
+            const newUser = { ...user }
+            e.preventDefault();
+            // filterElement();
+    
+            newUser.userName = username;
+            newUser.email = email;
+            newUser.passWord = password;
+            newUser.firstName = firstname;
+            newUser.secondName = lastname;
+            newUser.phone = phone;
+            newUser.dateDeNaissance = dateDeNaissance;
+            setUser(newUser)
 
-    const PushArray = (newUser) => {
-        let newtable = [...myData, user];
-        setMyData(newtable);
-        console.log(newtable);
-        console.log(myData);
-        setfirstname("");
-        setlastname("");
-        setusername("");
-        setphone("");
-        setemail("");
-        setpassword("");
-        setrepeat("");
-        setValidatedEmail("");
-        setValidatedPassword("");
-        setdateDeNaissance("");
-    };
-    const filterElement = () => {
-        let filteredUser = myData.filter(element => element.username === user.username);
-        setVérUsername(filteredUser.length > 0 ? filteredUser[0].username : "");
-    };
-    console.log(Vérusername);
-    const hello = (e) => {
-        e.preventDefault();
-        filterElement();
-        
         if (Vérusername === username) {
-            alert("hello")
-            
-        }else{
-            Alert("no")
+            alert("Username already exists. Please choose a different username.");
+            return;
         }
 
         const validateEmail = (inputEmail) => {
@@ -100,26 +78,25 @@ export const Section = () => {
             setValidatedPassword("Enter a strong password (at least 7 characters with a mix of uppercase, lowercase, numbers, and special characters).");
             return; 
         }
-
-
         if (password && repeat && password === repeat && validateEmail(email)) {
             const formattedUsername = formatName(username);
-            const newUser = new users(username, email, password, firstname, lasttname, phone);
-            PushArray(newUser);
             navigate('/login');
         } else {
             alert("Passwords do not match or there is a validation error.");
         }
+
+        let newtable = [...myData, newUser];
+        setMyData(newtable);
     }
 
 
     return (
-        <div className='flex justify-around items-center p-9 gap-9 bg-[#030712]'>
-            <div>
-                <h1 className='text-sky-500 text-6xl font-medium'>logo</h1>
+        <div className='flex justify-around items-center h-[100vh] p-7 gap-9 bg-[#030712]'>
+            <div className=''>
+                <img src={logo} width={"550px"} alt="" />
             </div>
-            <Card className="w-[50vw] bg-[#030712] border-r-white border-2">
-                <form className="flex flex-col gap-4">
+            <Card className="w-[50vw] bg-[#030712] border-[#f9fafb4c] border-2">
+                <form className="flex flex-col gap-2 h-[68vh]">
                     <div className='flex justify-center'>
                         <h1 className='text-violet-600 text-4xl font-medium'>Sign Up</h1>
                     </div>
@@ -184,11 +161,10 @@ export const Section = () => {
                     <p>I have a account</p>
                     <Link className='text-[#6c28d9c4] border-b-2 border-[#6c28d9c4] ' to={'/login'}>login</Link>
                 </div>
-                <div className='flex justify-center pt-4'>
+                <div className='flex justify-center '>
                     <Button className='w-[20vw] bg-[#6c28d9c4] text-white' onClick={(e) => {
-                            PushArray();
                             hello(e);
-                            filterElement();
+                            // filterElement();
                         }} type="submit">
                             Submit
                     </Button>
