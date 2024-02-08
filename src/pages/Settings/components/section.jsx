@@ -1,7 +1,14 @@
 import React, { useContext, useState } from 'react';
 import "./section.sass"
 import Test_pic from "../../../assets/img/profile-pic-test.jpg"
-import { useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { FaHome } from "react-icons/fa";
+import { FaUser } from "react-icons/fa";
+import { FaUserPlus } from "react-icons/fa6";
+import { MdLocalGroceryStore } from "react-icons/md";
+import { IoIosSettings } from "react-icons/io";
+import { HiUserGroup } from "react-icons/hi2";
+import { RiLogoutBoxLine } from "react-icons/ri";
 
 export const Section = () => {
     const [profileImg, setProfileImg] = useState([]);
@@ -50,20 +57,20 @@ export const Section = () => {
                 return;
             }
         }
-    
+
         // Handle password change separately
         if (field === 'password') {
             setPassword(value);
         } else if (field === 'newPassword') {
             setNewPassword(value);
-    
+
             // Validate the new password only if the field is 'newPassword'
             const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{7,}$/;
-    
+
             if (!passwordRegex.test(value) && value !== '' && newPasswordPolicyError) {
                 alert('New password must be at least 7 characters and contain a mix of uppercase, lowercase, and numbers.');
             }
-    
+
             setNewPasswordPolicyError(!passwordRegex.test(value));
         } else {
             setTempChanges((prevChanges) => ({
@@ -82,60 +89,77 @@ export const Section = () => {
     const handleApplyButtonClick = () => {
         // Validate email format only for the email field
         if (tempChanges.email && !isValidEmail(tempChanges.email)) {
-          alert('Invalid email format');
-          // Clear the email input
-          setTempChanges((prevChanges) => ({
-            ...prevChanges,
-            email: '',
-          }));
-          return;
+            alert('Invalid email format');
+            // Clear the email input
+            setTempChanges((prevChanges) => ({
+                ...prevChanges,
+                email: '',
+            }));
+            return;
         }
-      
+
         // Check if a new password is provided
         if (password !== '' && password !== userInfo.password) {
-          setPasswordError(true);
-          alert('Current password is incorrect!');
-          setPassword('');
-          setConfirmPassword('');
-          return;
+            setPasswordError(true);
+            alert('Current password is incorrect!');
+            setPassword('');
+            setConfirmPassword('');
+            return;
         }
-      
+
         // Check new password policy
         if (newPasswordPolicyError) {
-          alert('New password must be at least 7 characters and contain a mix of uppercase, lowercase, and numbers.');
-          // Clear the new password input
-          setNewPassword('');
-          return;
+            alert('New password must be at least 7 characters and contain a mix of uppercase, lowercase, and numbers.');
+            // Clear the new password input
+            setNewPassword('');
+            return;
         }
-      
+
         // Clear password error when passwords match
         setPasswordError(false);
-      
+
         // Update userInfo with new values
         setUserInfo((prevUserInfo) => ({
-          ...prevUserInfo,
-          ...Object.fromEntries(
-            Object.entries(tempChanges).filter(([key, value]) => value !== '')
-          ),
-          password: newPassword !== '' ? newPassword : prevUserInfo.password,
+            ...prevUserInfo,
+            ...Object.fromEntries(
+                Object.entries(tempChanges).filter(([key, value]) => value !== '')
+            ),
+            password: newPassword !== '' ? newPassword : prevUserInfo.password,
         }));
-      
+
         // Clear the tempChanges after applying
         setTempChanges({
-          firstName: '',
-          lastName: '',
-          email: '',
-          bio: '',
-          password: '', // Clear the temporary password value
+            firstName: '',
+            lastName: '',
+            email: '',
+            bio: '',
+            password: '', // Clear the temporary password value
         });
-      
+
         // Clear password and confirm password fields after applying
         setPassword('');
         setConfirmPassword('');
-      };
+    };
 
     return (
         <>
+            {/* navbar */}
+            <div className='bg-[#1089F9] flex items-center  p-5 justify-between'>
+                <Link className='text-2xl font-bold text-white' to={'/'}>DevHub</Link>
+
+                <div className='navbar flex justify-around w-[40%]'>
+                    <Link className='text-white text-3xl' to={'/home'}><FaHome /></Link>
+                    <Link className='text-white text-3xl' to={'/profile'}><FaUser /> </Link>
+                    <Link className='text-white text-3xl' to={'/market'}><MdLocalGroceryStore /></Link>
+                    <Link className='text-white text-3xl' to={'/suggestions'}><FaUserPlus /></Link>
+                    <Link className='text-white text-3xl' to={'/settings'}><IoIosSettings /></Link>
+                    <Link className='text-white text-3xl' to={'/groupes'}><HiUserGroup /></Link>
+                    <Link className='text-white text-2xl' to={'/'}>Signup</Link>
+                    <Link className='text-white text-2xl' to={'/login'}>login</Link>
+                </div>
+                <input className='w-[40%] p-1 px-3 rounded-full border-none outline-none font-mono' type="text" placeholder='search freinds' />
+                <RiLogoutBoxLine className='text-[#F9FAFB] text-2xl cursor-pointer' />
+            </div>
 
             {/* sec-1 pic & name */}
             <div className='flex flex-row justify-center gap-16 items-center  p-10 bg-white rounded-xl w-[700px] m-auto '>
