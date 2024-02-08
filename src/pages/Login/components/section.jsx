@@ -2,7 +2,6 @@ import "./section.sass"
 import React, { useContext, useState } from 'react';
 import { Button, Label, TextInput } from 'flowbite-react';
 import { MyContext } from "../../../utils/contextProvider";
-import { useNavigate } from "react-router-dom";
 
 class Users {
     constructor(username, password) {
@@ -31,17 +30,15 @@ export const Section = () => {
         setVérUsername(username[0]?.username || "");
         setVérPassword(userpas[0]?.password || "");
     };
-
     console.log(vérpassword);
     console.log(vérusername);
     console.log(newPassword);
     console.log(newusername);
-    const navigate = useNavigate();
     const hello = (e) => {
         e.preventDefault();
         filterElement();
         if (newPassword == vérpassword && newusername == vérusername) {
-            // navigate('/home')
+            alert("Welcome");
         } else {
             alert("Passwords do not match or there is a validation error.");
         }
