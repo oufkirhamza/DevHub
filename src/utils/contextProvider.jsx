@@ -19,7 +19,7 @@ export const MyProvider = ({ children }) => {
             profile: {
                 image: avatar,
                 bio: "If the automobile had followed the same development cycle as the computer, a Rolls-Royce would today cost $100, get a million miles per gallon, and explode once a year, killing everyone inside.",
-                following: [1],
+                following: [],
                 followers: [],
                 postsProfile: [
                     {
@@ -139,6 +139,7 @@ export const MyProvider = ({ children }) => {
             },
         },
         {
+            
             userName: "user3",
             firstName: "user3",
             secondName: "user3",
@@ -149,13 +150,34 @@ export const MyProvider = ({ children }) => {
             profile: {
                 image: avatar,
                 bio: "If the automobile had followed the same development cycle as the computer, a Rolls-Royce would today cost $100, get a million miles per gallon, and explode once a year, killing everyone inside.",
-                following: [],
+                following: [
+                    {
+                        userName: "user2",
+                        firstName: "user2",
+                        secondName: "user2",
+                        email: "user2@gmail.com",
+                        phone: "0600000000",
+                        passWord: "pasword123",
+                        dateDeNaissance: "02/03/2000",
+                        profile: {
+                            image: avatar,
+                            bio: "If the automobile had followed the same development cycle as the computer, a Rolls-Royce would today cost $100, get a million miles per gallon, and explode once a year, killing everyone inside.",
+                            following: [],
+                            followers: [],
+                            postsProfile: [],
+                            postsGroupes: [],
+                            Products: [
+                                
+                            ],
+                            groupes: [],
+                        },
+                    }
+                ],
                 followers: [],
                 postsProfile: [],
                 postsGroupes: [],
                 Products: [
-                    
-                   
+
                 ],
                 groupes: [],
             },
@@ -231,7 +253,29 @@ export const MyProvider = ({ children }) => {
             profile: {
                 image: avatar,
                 bio: "If the automobile had followed the same development cycle as the computer, a Rolls-Royce would today cost $100, get a million miles per gallon, and explode once a year, killing everyone inside.",
-                following: [],
+                following: [
+                    {
+                        userName: "user2",
+                        firstName: "user2",
+                        secondName: "user2",
+                        email: "user2@gmail.com",
+                        phone: "0600000000",
+                        passWord: "pasword123",
+                        dateDeNaissance: "02/03/2000",
+                        profile: {
+                            image: avatar,
+                            bio: "If the automobile had followed the same development cycle as the computer, a Rolls-Royce would today cost $100, get a million miles per gallon, and explode once a year, killing everyone inside.",
+                            following: [],
+                            followers: [],
+                            postsProfile: [],
+                            postsGroupes: [],
+                            Products: [
+                                
+                            ],
+                            groupes: [],
+                        },
+                    }
+                ],
                 followers: [],
                 postsProfile: [],
                 postsGroupes: [],
