@@ -18,15 +18,15 @@ import webDevLogo from '../assets/img/webdev_logo.png'
 export const Header = () => {
     return (
         <>
-            <div className='nav bg-[#030712] fixed top-0 w-[100%] z-50  flex items-center py-3 px-5 justify-between  shadow-lg shadow-[#6c28d955]'>
-                <Link className='text-xl font-bold text-[#bcbcbc] hover:text-[#F9FAFB]' to={'/home'}><img width={50} src={webDevLogo} alt="logo" /></Link>
-
-
+            <div className='nav bg-[#030712] fixed top-0 w-[100%] z-50  flex items-center py-3 px-5 justify-between shadow shadow-lg shadow-[#6c28d955]'>
+                <Link className='text-xl font-bold text-[#bcbcbc] hover:text-[#F9FAFB]' to={'/'}>DevHub</Link>
+                
                 <div className='navbar flex justify-around w-[40%]'>
                     <Link className='text-[#bcbcbc] hover:text-[#F9FAFB] text-2xl' to={'/home'}><FaHome /></Link>
                     <Link className='text-[#bcbcbc] hover:text-[#F9FAFB] text-2xl' to={'/profile'}><FaUser /> </Link>
                     <Link className='text-[#bcbcbc] hover:text-[#F9FAFB] text-2xl' to={'/market'}><MdLocalGroceryStore /></Link>
                     <Link className='text-[#bcbcbc] hover:text-[#F9FAFB] text-2xl' to={'/suggestions'}><FaUserPlus /></Link>
+                    <Link className='text-[#bcbcbc] hover:text-[#F9FAFB] text-2xl' to={'/settings'}><IoIosSettings /></Link>
                     <Link className='text-[#bcbcbc] hover:text-[#F9FAFB] text-2xl' to={'/groupes'}><HiUserGroup /></Link>
                     {/* <Link className='text-[#F9FAFB] text-2xl' to={'/'}>Signup</Link>
                     <Link className='text-[#F9FAFB] text-2xl' to={'/login'}>login</Link> */}

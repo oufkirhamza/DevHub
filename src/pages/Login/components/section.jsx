@@ -5,35 +5,26 @@ import { MyContext } from "../../../utils/contextProvider";
 import { Link, useNavigate } from "react-router-dom";
 import logo from "../../../assets/img/Website_Creator-amico.png";
 
-class Users {
-    constructor(username, password) {
-        this.username = username;
-        this.password = password;
-    }
-}
+
 
 export const Section = () => {
-    const [myData, setMyData, product, setProduct, poste, setPoste, comment, setComment, groupe, setGroupe, connectedUser, setConnectedUser] = useContext(MyContext);
-    const navigate = useNavigate();
+    const [myData, setMyData, user, setUser, product, setProduct, poste, setPoste, comment, setComment, groupe, setGroupe, connectedUser, setConnectedUser] = useContext(MyContext)
     const [newusername, setNewusername] = useState("");
     const [newPassword, setNewPassword] = useState("");
-    const [vérusername, setVérUsername] = useState("");
-    const [vérpassword, setVérPassword] = useState("");
 
-    useEffect(() => {
-        const user = new Users(newusername, newPassword);
-        let username = myData.filter(element => element.username === user.username);
-
-        setVérUsername(username[0]?.username);
-        setVérPassword(username[0]?.password);
-    }, [newusername, newPassword, myData]);
+    const navigate = useNavigate();
 
     const hello = (e) => {
         e.preventDefault();
-
-        // Check if the input username and password match
-        if (newusername === vérusername && newPassword === vérpassword) {
-            navigate('/home');
+        // let userpas = myData.filter(element => element.password === user.password);
+        console.log(myData);
+        const compare = myData.find(element => element.userName == newusername && element.passWord == newPassword)
+        console.log(compare);
+        console.log(newusername,newPassword);
+        // filterElement();
+        if (compare) {
+            setConnectedUser(user)
+            navigate('/home')
         } else {
             alert("Passwords do not match or there is a validation error.");
         }

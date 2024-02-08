@@ -1,10 +1,10 @@
 
 import React, { createContext, useState } from 'react'
 import avatar from "../assets/img/attachment_119362573.png"
-import card from "../assets/img/Teach Online PNG Transparent, Online Teaching Linear Education Information, Chemistry Clipart, Computer, Online Education PNG Image For Free Download.jpeg"
+import { Header } from '../layouts/header'
+// import card from "../assets/img/Teach Online PNG Transparent, Online Teaching Linear Education Information, Chemistry Clipart, Computer, Online Education PNG Image For Free Download.jpeg"
 export const MyContext = createContext()
 export const MyProvider = ({ children }) => {
-
     // const [test, setTest] = useState('Hello Test')
     const [myData, setMyData] = useState([
         {
@@ -42,37 +42,11 @@ export const MyProvider = ({ children }) => {
                 postsProfile: [],
                 postsGroupes: [],
                 Products: [
-                    {
-                        id: 1,
-                        price: 10.99,
-                        description: "Do you need a web design for your product or service",
-                        category: "Web Design",
-                        city: "Paris",
-                        image: card
 
-                    },
-                    {
-                        id: 1,
-                        price: 10.99,
-                        description: "Do you need a web design for your product or service",
-                        category: "Web developpement",
-                        city: "Paris",
-                        image: card
-                    },{
-                        id: 1,
-                        price: 10.99,
-                        description: "Do you need a web design for your product or service",
-                        category: "Web Design",
-                        city: "Paris",
-                        image: card
-                    },{
-                        id: 1,
-                        price: 10.99,
-                        description: "Do you need a web design for your product or service",
-                        category: "Web Design",
-                        city: "Paris",
-                        image: card
-                    },
+                    
+                
+
+
                 ],
                 groupes: [],
             },
@@ -111,7 +85,10 @@ export const MyProvider = ({ children }) => {
                 followers: [],
                 postsProfile: [],
                 postsGroupes: [],
-                Products: [],
+                Products: [
+                    
+    
+                ],
                 groupes: [],
             },
         },
@@ -173,12 +150,31 @@ export const MyProvider = ({ children }) => {
                 id: "",
             }
     )
-
+    const [connected, setConnected] = useState( [
+        {
+            id:"",
+            userName: "user3",
+            firstName: "user3",
+            secondName: "user3",
+            email: "user3@gmail.com",
+            phone: "0600000000",
+            passWord: "pasword123",
+            dateDeNaissance: "02/03/2000",
+            profile: {
+                image: avatar,
+                bio: "If the automobile had followed the same development cycle as the computer, a Rolls-Royce would today cost $100, get a million miles per gallon, and explode once a year, killing everyone inside.",
+                following: [],
+                followers: [],
+                postsProfile: [],
+                postsGroupes: [],
+                Products: [],
+                groupes: [],
+            },
+        },
+    ])
     return (
         <>
-            
-
-            <MyContext.Provider value={[myData, setMyData, user, setUser, product, setProduct, poste, setPoste, comment, setComment, groupe, setGroupe]} >
+            <MyContext.Provider value={[myData, setMyData, user, setUser, product, setProduct, poste, setPoste, comment, setComment, groupe, setGroupe,connected, setConnected]} >
                 {children}
             </MyContext.Provider>
         </>
