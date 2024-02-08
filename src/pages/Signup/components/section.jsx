@@ -79,8 +79,6 @@ export const Section = () => {
         e.preventDefault();
         filterElement();
         
-
-
         if (Vérusername === username) {
             alert("hello")
             
@@ -103,7 +101,6 @@ export const Section = () => {
             return; 
         }
 
-    
 
         if (password && repeat && password === repeat && validateEmail(email)) {
             const formattedUsername = formatName(username);
@@ -117,14 +114,14 @@ export const Section = () => {
 
 
     return (
-        <div className='flex justify-around items-center  p-10 gap-9'>
+        <div className='flex justify-around items-center p-9 gap-9 bg-[#030712]'>
             <div>
                 <h1 className='text-sky-500 text-6xl font-medium'>logo</h1>
             </div>
-            <Card className="w-[50vw] bg-sky-500 border-0 ">
+            <Card className="w-[50vw] bg-[#030712] border-r-white border-2">
                 <form className="flex flex-col gap-4">
                     <div className='flex justify-center'>
-                        <h1 className='text-white text-4xl font-medium'>Sign Up</h1>
+                        <h1 className='text-violet-600 text-4xl font-medium'>Sign Up</h1>
                     </div>
                     <div className='flex gap-4'>
                         <div className='w-[50vw]'>
@@ -183,12 +180,12 @@ export const Section = () => {
                         </div>
                     </div>
                 </form>
-                <div className='flex gap-2   items-center'>
+                <div className='flex gap-2  text-white items-center'>
                     <p>I have a account</p>
-                    <Link className='text-white border-b-2 border-white ' to={'/login'}>login</Link>
+                    <Link className='text-[#6c28d9c4] border-b-2 border-[#6c28d9c4] ' to={'/login'}>login</Link>
                 </div>
                 <div className='flex justify-center pt-4'>
-                    <Button className='w-[20vw] bg-white text-sky-500' onClick={(e) => {
+                    <Button className='w-[20vw] bg-[#6c28d9c4] text-white' onClick={(e) => {
                             PushArray();
                             hello(e);
                             filterElement();

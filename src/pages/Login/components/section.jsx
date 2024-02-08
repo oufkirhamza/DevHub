@@ -2,6 +2,7 @@ import "./section.sass"
 import React, { useContext, useState } from 'react';
 import { Button, Label, TextInput } from 'flowbite-react';
 import { MyContext } from "../../../utils/contextProvider";
+import { useNavigate } from "react-router-dom";
 
 class Users {
     constructor(username, password) {
@@ -14,7 +15,8 @@ class Users {
 export const Section = () => {
     const [myData, setMyData] = useContext(MyContext)
 
-    
+    const navigate = useNavigate();
+
 
     const [newusername, setNewusername] = useState("");
     const [newPassword, setNewPassword] = useState("");
