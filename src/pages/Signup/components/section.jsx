@@ -11,7 +11,7 @@ export const Section = () => {
     const [myData, setMyData] = useContext(MyContext)
     
     const navigate = useNavigate();
-
+    
     const formatName = (name) => {
         let nameArray = name.split(" ");
         let formattedNameArray = nameArray.map(word => word[0].toUpperCase() + word.substr(1).toLowerCase());
