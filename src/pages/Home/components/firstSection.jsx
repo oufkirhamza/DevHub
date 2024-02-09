@@ -30,7 +30,7 @@ import webDevLogo from '../../../assets/img/webdev_logo.png'
 
 export const FirstSection = () => {
     const [myData, setMyData, user, setUser, product, setProduct, poste, setPoste, comment, setComment, groupe, setGroupe] = useContext(MyContext)
-    // console.log(myData);
+    console.log(myData);
 
     const [isModalOpen, setIsModalOpen] = useState(false);
     const showModal = () => {

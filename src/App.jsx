@@ -15,7 +15,6 @@ import { ProductPage } from './pages/Market_Product/Products';
 function App() {
   return (
     <MyProvider>
-      {/* <Header/> */}
       <Routes >
         <Route path='/home' element={<HomePage />} />
         <Route path='/error' element={<ErrorPage />} />
