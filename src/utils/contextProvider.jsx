@@ -174,12 +174,14 @@ export const MyProvider = ({ children }) => {
 
     console.log(myData);
 
+    const [connectedUser, setConnectedUser] = useState([]);
+
     return (
         <>
 
             
 
-            <MyContext.Provider value={[myData, setMyData, user, setUser, product, setProduct, poste, setPoste, comment, setComment, groupe, setGroupe]} >
+            <MyContext.Provider value={[myData, setMyData, user, setUser, product, setProduct, poste, setPoste, comment, setComment, groupe, setGroupe , connectedUser, setConnectedUser]} >
                 {children}
             </MyContext.Provider>
         </>

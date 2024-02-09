@@ -20,6 +20,10 @@ export const Section = () => {
     const [passwordError, setPasswordError] = useState(false);
     const [newPasswordPolicyError, setNewPasswordPolicyError] = useState(false);
 
+    const handleTheme = () => {
+        setTheme(theme === "dark" ? "light" : "dark")
+    }
+
     const handlechange = (e) => {
         const selectedImage = e.target.files[0];
         setImage(URL.createObjectURL(selectedImage));
@@ -150,8 +154,10 @@ export const Section = () => {
 
     return (
         <>
+        <div className={` bg-[#030712] ${theme == "light" ? " bg-[#030712]" : "bg-white"} `}>
+
             {/* navbar */}
-            <div className={`nav bg-[#030712] fixed top-0 w-[100%] z-50  flex items-center py-3 px-5 justify-between shadow shadow-lg shadow-[#6c28d955] ${theme == "light" ? " bg-[#030712]" : "bg-white"}`}>
+            <div className={`nav  fixed top-0 w-[100%] z-50  flex items-center py-3 px-5 justify-between shadow shadow-lg shadow-[#6c28d955]`}>
                 <Link className='text-xl font-bold text-[#bcbcbc] hover:text-[#F9FAFB]' to={'/'}>DevHub</Link>
                 
                 <div className='navbar flex justify-around w-[40%]'>
@@ -169,13 +175,20 @@ export const Section = () => {
                 <RiLogoutBoxLine className='text-[#F9FAFB] text-2xl cursor-pointer' />
                 <Link className='text-[#bcbcbc] hover:text-[#F9FAFB] text-2xl' to={'/settings'}><IoIosSettings /></Link>
                 </div>
+
+                <label class="relative inline-flex items-center cursor-pointer">
+                            <input class="sr-only peer" value="" type="checkbox" />
+                            <div onClick={handleTheme}
+                                class="w-20 h-10 rounded-full ring-0 peer duration-500 outline-none bg-gray-200 overflow-hidden before:flex before:items-center before:justify-center after:flex after:items-center after:justify-center before:content-['☀️'] before:absolute before:h-10 before:w-10 before:top-1/2 before:bg-[#F9FAFB] before:rounded-full before:left-1 before:-translate-y-1/2 before:transition-all before:duration-700 peer-checked:before:opacity-0 peer-checked:before:rotate-90 peer-checked:before:-translate-y-full shadow shadow-[#F9FAFB] peer-checked:shadow-lg peer-checked:shadow-gray-700 peer-checked:bg-[#383838] after:content-['🌑'] after:absolute after:bg-[#1d1d1d] after:rounded-full after:top-[4px] after:right-1 after:translate-y-full after:w-10 after:h-10 after:opacity-0 after:transition-all after:duration-700 peer-checked:after:opacity-100 peer-checked:after:rotate-180 peer-checked:after:translate-y-0"
+                            ></div>
+                </label>
             </div>
 
             {/* sec-1 pic & name */}
-            <div className={`flex flex-row justify-center gap-16 items-center  p-10 bg-[#030712] border-2 border-[#f9fafb4c] text-white rounded-xl w-[700px] m-auto mt-[10vh] ${theme == "light" ? " bg-[#030712]" : "bg-white"}`}>
+            <div className={`flex flex-row justify-center gap-16 items-center  p-10 bg-[#030712]   rounded-xl w-[700px] m-auto mt-[10vh] ${theme == "light" ? " bg-[#030712] text-white border-2 border-[#f9fafb4c]" : "bg-white text-black border-2 border-[#00000025]"}`}>
 
                 {/* <img className='object-cover h-[200px] w-[200px] rounded-full ' src={(image)} alt="" /> */}
-                <div class="input-div ">
+                <div className={`input-div ${theme == "light" ? " bg-[#030712] " : "bg-white  shadow-md hover:shadow-xl hover:border-2 hover:border-[#1b1b1b42]"}`}>
                     <img id='test' className='object-cover rounded-full filter blur-[2px]  cursor-pointer z-[0] w-[200px] h-[200px]' on src={(image)} alt="" />
                     <input class="input z-10 cursor-pointer file:cursor-pointer" name="file" type="file" onChange={(e) => handlechange(e)} />
                     <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" stroke-linejoin="round" stroke-linecap="round" viewBox="0 0 24 24" stroke-width="2" fill="none" stroke="currentColor" class="icon"><polyline points="16 16 12 12 8 16"></polyline><line y2="21" x2="12" y1="12" x1="12"></line><path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"></path><polyline points="16 16 12 12 8 16"></polyline></svg>
@@ -227,8 +240,8 @@ export const Section = () => {
 
 
 
-                <div className=' flex flex-col gap-3 bg-[#030712] border-2 border-[#f9fafb4c]  rounded-xl  w-[700px] m-auto p-5'>
-                    <h1 className='text-center text-white text-xl font-bold '>User Infos :</h1>
+                <div className={` flex flex-col gap-3 bg-[#030712]  rounded-xl  w-[700px] m-auto p-5 ${theme == "light" ? " bg-[#030712] text-white border-2 border-[#f9fafb4c]" : "bg-white text-black border-2 border-[#00000025]"}`}>
+                    <h1 className={`text-center  text-xl font-bold ${theme == "light" ? " bg-[#030712] text-white " : "bg-white text-black "}`}>User Infos :</h1>
                     <input onChange={(e) => handleUserInfoChange('firstName', e.target.value)} value={tempChanges.firstName} className=' outline-none border-[1.5px] border-[#6978a04f] h-14 w-50 rounded-xl p-5 bg-[#f4f7fb]' type="text" placeholder='New FirstName' />
                     <input onChange={(e) => handleUserInfoChange('lastName', e.target.value)} value={tempChanges.lastName} className='outline-none border-[1.5px] border-[#6978a04f] h-14 w-50 rounded-xl p-5 bg-[#f4f7fb]' type="text" placeholder='New LastName' />
                     <input onChange={(e) => handleUserInfoChange('email', e.target.value)} value={tempChanges.email} className='outline-none border-[1.5px] border-[#6978a04f] h-14 w-50 rounded-xl p-5 bg-[#f4f7fb]' type="text" placeholder='New Email' />
@@ -240,11 +253,12 @@ export const Section = () => {
                         <textarea onChange={(e) => handleUserInfoChange('bio', e.target.value)} value={tempChanges.bio} className='outline-none border-[1.5px] border-[#6978a04f] h-28 w-50 rounded-xl p-5 bg-[#f4f7fb] w-full' name="" id="" placeholder='New Bio'></textarea>
                     </div>
 
-                    <button onClick={handleApplyButtonClick} className='text-white bg-[#6D28D9] p-3 rounded-full w-fit w-[7vw] m-auto font-bold'>Apply</button>
+                    <button onClick={handleApplyButtonClick} className='text-white bg-[#6D28D9] p-3 rounded-full w-[120px] h-[50px] m-auto font-bold'>Apply</button>
                 </div>
 
 
             </div>
+        </div>
         </>
     );
 };
