@@ -51,7 +51,7 @@ export const Section = () => {
     user.email = email;
     user.password = password;
     user.firstname = firstname;
-    user.lastname = lasttname;
+    user.lastname = lastname;
     user.phone = phone;
     user.date = dateDeNaissance;
 
@@ -106,7 +106,7 @@ export const Section = () => {
             alert("Passwords do not match or there is a validation error.");
         }
 
-        let newtable = [...myData, newUser];
+        let newtable = [...myData, newUser]
         setMyData(newtable);
     }
 
