@@ -9,7 +9,7 @@ import logo from "../../../assets/img/Website_Creator-amico.png"
 
 
 export const Section = () => {
-    const [myData, setMyData] = useContext(MyContext)
+    const [myData, setMyData, user, setUser, product, setProduct, poste, setPoste, comment, setComment, groupe, setGroupe, connectedUser, setConnectedUser] = useContext(MyContext)
     
     const navigate = useNavigate();
     
@@ -21,7 +21,7 @@ export const Section = () => {
         return formattedName;
     }
 
-
+    
     const [username, setusername] = useState("");
     const [firstname, setfirstname] = useState("");
     const [lastname, setlastname] = useState("");
@@ -30,58 +30,40 @@ export const Section = () => {
     const [password, setpassword] = useState("");
     const [repeat, setrepeat] = useState("");
     const [validatedEmail, setValidatedEmail] = useState("");
-    const [validatedPassword, setValidatedPassword] = useState("");
+    const [validatedPassword, setValidatedPassword] = useState(""); 
     const [dateDeNaissance, setdateDeNaissance] = useState("");
     const [Vérusername, setVérUsername] = useState("");
     
-    class users {
-        constructor(username, email, password, firstname, lastname , phone ,date) {
-            this.username = username
-            this.email = email
-            this.password = password
-            this.firstname = firstname
-            this.lastname = lastname
-            this.phone = phone
-            this.date = date
+
+    // const filterElement = () => {
+    //     console.log("User's username:", user.username);
+    //     console.log("myData:", myData);
+    
+    //     let filteredUser = myData.filter(element => element.username === user.username);
+    //     console.log("Filtered User:", filteredUser);
+    //     setVérUsername(filteredUser.length > 0 ? filteredUser[0].username : "");
+    // };
+    
+    
+        const hello = (e) => {
+            const newUser = { ...user }
+            e.preventDefault();
+            // filterElement();
+    
+            newUser.userName = username;
+            newUser.email = email;
+            newUser.passWord = password;
+            newUser.firstName = firstname;
+            newUser.secondName = lastname;
+            newUser.phone = phone;
+            newUser.dateDeNaissance = dateDeNaissance;
+            setUser(newUser)
+
+        if (Vérusername === username) {
+            alert("Username already exists. Please choose a different username.");
+            return;
         }
-    }
 
-    const user = new users();
-    user.username = username;
-    user.email = email;
-    user.password = password;
-    user.firstname = firstname;
-    user.lastname = lastname;
-    user.phone = phone;
-    user.date = dateDeNaissance;
-
-    const PushArray = (newUser) => {
-        let newtable = [...myData, user];
-        setMyData(newtable);
-        console.log(newtable);
-        console.log(myData);
-        // Reset form fields
-        setfirstname("");
-        setlastname("");
-        setusername("");
-        setphone("");
-        setemail("");
-        setpassword("");
-        setrepeat("");
-        setValidatedEmail("");
-        setValidatedPassword("");
-        setdateDeNaissance("");
-    };
-    const filterElement = () => {
-
-        setVérUsername(username[0]?.username || "");
-    };
-    const hello = (e) => {
-        e.preventDefault();
-        filterElement();
-        
-
-        // Validate and prompt for email
         const validateEmail = (inputEmail) => {
             const trimmedEmail = inputEmail.trim().toLowerCase().replace(/ /g, '');
             if (trimmedEmail.length < 10 || trimmedEmail.indexOf('@') === -1 || (trimmedEmail.split('@').length - 1 !== 1)) {
@@ -96,10 +78,7 @@ export const Section = () => {
             setValidatedPassword("Enter a strong password (at least 7 characters with a mix of uppercase, lowercase, numbers, and special characters).");
             return; 
         }
-
-    
-
-        if (password && repeat && password === repeat && validateEmail(email)) {
+        if ( firstname && lastname && dateDeNaissance && username && password && repeat && password === repeat && validateEmail(email)) {
             const formattedUsername = formatName(username);
             navigate('/login');
         } else {
@@ -178,16 +157,19 @@ export const Section = () => {
                         </div>
                     </div>
                 </form>
-                <div className='flex justify-center pt-4'>
-                    <Button className='w-[20vw] bg-sky-500' onClick={(e) => {
-                            PushArray();
+                <div className='flex gap-2  text-white items-center'>
+                    <p>I have a account</p>
+                    <Link className='text-[#6c28d9c4] border-b-2 border-[#6c28d9c4] ' to={'/login'}>login</Link>
+                </div>
+                <div className='flex justify-center '>
+                    <Button className='w-[20vw] bg-[#6c28d9c4] text-white' onClick={(e) => {
                             hello(e);
-                            filterElement();
+                            // filterElement();
                         }} type="submit">
                             Submit
                     </Button>
                 </div>
-
+                
             </Card>
         </div>
     );
