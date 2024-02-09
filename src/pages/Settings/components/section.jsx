@@ -9,8 +9,11 @@ import { MdLocalGroceryStore } from "react-icons/md";
 import { IoIosSettings } from "react-icons/io";
 import { HiUserGroup } from "react-icons/hi2";
 import { RiLogoutBoxLine } from "react-icons/ri";
+import { MyContext } from '../../../utils/contextProvider';
 
 export const Section = () => {
+    const [myData, setMyData, user, setUser, product, setProduct, poste, setPoste, comment, setComment, groupe, setGroupe,connectedUser, setConnectedUser] = useContext(MyContext)
+
     const [theme, setTheme] = useState("light")
     const [profileImg, setProfileImg] = useState([]);
     const [image, setImage] = useState(null);
@@ -30,11 +33,11 @@ export const Section = () => {
     };
 
     const [userInfo, setUserInfo] = useState({
-        username: 'cd badr',
-        firstName: 'Badreddine',
-        lastName: 'Faras',
-        email: 'Badr@gmail.com',
-        bio: 'dima raja',
+        username: 'user1',
+        firstName: 'ahmed',
+        lastName: 'wasim',
+        email: 'wasim12@gmail.com',
+        bio: 'never give up',
         password: 'badr77'
 
     });
@@ -157,7 +160,7 @@ export const Section = () => {
         <div className={` bg-[#030712] ${theme == "light" ? " bg-[#030712]" : "bg-white"} `}>
 
             {/* navbar */}
-            <div className={`nav  fixed top-0 w-[100%] z-50  flex items-center py-3 px-5 justify-between shadow shadow-lg shadow-[#6c28d955]`}>
+            <div className={`nav  fixed top-0 w-[100%] z-50  flex items-center py-3 px-5 justify-between shadow  shadow-[#6c28d955]`}>
                 <Link className='text-xl font-bold text-[#bcbcbc] hover:text-[#F9FAFB]' to={'/'}>DevHub</Link>
                 
                 <div className='navbar flex justify-around w-[40%]'>
@@ -201,11 +204,14 @@ export const Section = () => {
                     <table>
                         <tr>
                             <td class='text-xl font-bold ps-5'>Username:</td>
-                            <td class='text-xl opacity-75 ps-5'>cd badr</td>
+                            <td class='text-xl opacity-75 ps-5'>
+                            {userInfo.username.length > 10 ? userInfo.username.substring(0, 10) + '...' : userInfo.username}
+                            </td>
                         </tr>
                         <tr>
                             <td class='text-xl font-bold ps-5'>FirstName:</td>
                             <td class='text-xl opacity-75 ps-5'>
+                                {/* {connectedUser[0].firstName.length > 10 ? connectedUser[0].firstName.substring(0, 10) + '...' : connectedUser[0].firstName} */}
                                 {userInfo.firstName.length > 10 ? userInfo.firstName.substring(0, 10) + '...' : userInfo.firstName}
                             </td>
                         </tr>
