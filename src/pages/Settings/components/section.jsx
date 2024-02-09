@@ -11,6 +11,7 @@ import { HiUserGroup } from "react-icons/hi2";
 import { RiLogoutBoxLine } from "react-icons/ri";
 
 export const Section = () => {
+    const [theme, setTheme] = useState("light")
     const [profileImg, setProfileImg] = useState([]);
     const [image, setImage] = useState(null);
     const [password, setPassword] = useState('');
