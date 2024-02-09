@@ -78,7 +78,7 @@ export const Section = () => {
             setValidatedPassword("Enter a strong password (at least 7 characters with a mix of uppercase, lowercase, numbers, and special characters).");
             return; 
         }
-        if (password && repeat && password === repeat && validateEmail(email)) {
+        if ( firstname && lastname && dateDeNaissance && username && password && repeat && password === repeat && validateEmail(email)) {
             const formattedUsername = formatName(username);
             navigate('/login');
         } else {
