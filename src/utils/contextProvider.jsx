@@ -205,9 +205,81 @@ export const MyProvider = ({ children }) => {
                             ],
                             groupes: [],
                         },
+                    },
+                    {
+                        userName: "user1",
+                        firstName: "user1",
+                        secondName: "user1",
+                        email: "user1@gmail.com",
+                        phone: "0600000000",
+                        passWord: "pasword123",
+                        dateDeNaissance: "02/03/2000",
+                        profile: {
+                            image: avatar,
+                            bio: "If the automobile had followed the same development cycle as the computer, a Rolls-Royce would today cost $100, get a million miles per gallon, and explode once a year, killing everyone inside.",
+                            following: [],
+                            followers: [],
+                            postsProfile: [],
+                            postsGroupes: [],
+                            Products: [
+            
+                                
+                            
+            
+            
+                            ],
+                            groupes: [],
+                        },
                     }
                 ],
-                followers: [],
+                followers: [
+                    {
+                        userName: "user2",
+                        firstName: "user2",
+                        secondName: "user2",
+                        email: "user2@gmail.com",
+                        phone: "0600000000",
+                        passWord: "pasword123",
+                        dateDeNaissance: "02/03/2000",
+                        profile: {
+                            image: avatar,
+                            bio: "If the automobile had followed the same development cycle as the computer, a Rolls-Royce would today cost $100, get a million miles per gallon, and explode once a year, killing everyone inside.",
+                            following: [],
+                            followers: [],
+                            postsProfile: [],
+                            postsGroupes: [],
+                            Products: [
+                                
+                            ],
+                            groupes: [],
+                        },
+                    },
+                    {
+                        userName: "user1",
+                        firstName: "user1",
+                        secondName: "user1",
+                        email: "user1@gmail.com",
+                        phone: "0600000000",
+                        passWord: "pasword123",
+                        dateDeNaissance: "02/03/2000",
+                        profile: {
+                            image: avatar,
+                            bio: "If the automobile had followed the same development cycle as the computer, a Rolls-Royce would today cost $100, get a million miles per gallon, and explode once a year, killing everyone inside.",
+                            following: [],
+                            followers: [],
+                            postsProfile: [],
+                            postsGroupes: [],
+                            Products: [
+            
+                                
+                            
+            
+            
+                            ],
+                            groupes: [],
+                        },
+                    }
+                ],
                 postsProfile: [],
                 postsGroupes: [],
                 Products: [],

@@ -11,17 +11,53 @@ export const Section = () => {
     const [handlinput, setHandlinput] = useState('')
 
     console.log(connected);
-    
-    const handleConnect = (param) => {
+
+
+    const handleConnect = (param, action) => {
         if (connected && connected.length > 0 && connected[0]?.profile) {
-            const newTab = { ...connected[0] }; // Create a copy of the first element
-            newTab.profile.following.push(param);
-            setConnected([newTab]); // Update state with the modified copy
+            const connectedUserIndex = myData.findIndex(user => user.userName === connected[0].userName);
+            if (connectedUserIndex !== -1) {
+                const updatedMyData = [...myData]; // Create a copy of myData array
+                const connectedUser = { ...updatedMyData[connectedUserIndex] }; // Get the connected user from myData
+                const followingIndex = connectedUser.profile.following.findIndex(followedUser => followedUser.userName === param.userName);
+                if (action === "follow") {
+                    if (followingIndex === -1) {
+                        connectedUser.profile.following.push(param);
+                        updatedMyData[connectedUserIndex] = connectedUser;
+                        setMyData(updatedMyData); // Update state with the modified myData array
+                        console.log(myData);
+                    } else {
+                        console.log("User is already being followed.");
+                    }
+                } else if (action === "unfollow") {
+                    if (followingIndex !== -1) {
+                        connectedUser.profile.following.splice(followingIndex, 1); // Remove the user from following
+                        updatedMyData[connectedUserIndex] = connectedUser;
+                        setMyData(updatedMyData); // Update state with the modified myData array
+                        console.log(myData);
+                    } else {
+                        console.log("User is not being followed.");
+                    }
+                } else {
+                    console.error("Invalid action.");
+                }
+            } else {
+                console.error("Connected user not found in myData.");
+            }
         } else {
             console.error("Connected array or its nested property 'profile' is undefined.");
         }
     };
-    
+    // const handleConnect = (param) => {
+    //     if (connected && connected.length > 0 && connected[0]?.profile) {
+    //         const newTab = { ...connected[0] }; // Create a copy of the first element
+    //         newTab.profile.following.push(param);
+    //         setConnected([newTab]); // Update state with the modified copy
+    //     } else {
+    //         console.error("Connected array or its nested property 'profile' is undefined.");
+    //     }
+    // };
+
     const getFilteredSuggestions = () => {
         const connectedUserName = connected[0]?.userName;
         console.log(connectedUserName);
@@ -29,21 +65,21 @@ export const Section = () => {
         console.log(following);
         return myData.filter(
             suggestion =>
-            suggestion.userName !== connectedUserName &&
-            !following?.includes(suggestion.userName)
-            );
-        };
-        const filterElement = (event) => {
-            setHandlinput(event.target.value)
-            console.log(handlinput);
-            const connectedUserName = connected[0]?.userName;
-            const following = connected[0]?.profile?.following?.map(user => user.userName);
-            let newTab = myData.filter(element => element.userName.toLowerCase().includes(event.target.value.toLowerCase())&& element.userName !== connectedUserName &&
-            !following?.includes(element.userName) );
-            console.log(newTab);
-            setScreenSuggest(newTab);
-            getFilteredSuggestions()
-        }
+                suggestion.userName !== connectedUserName &&
+                !following?.includes(suggestion.userName)
+        );
+    };
+    const filterElement = (event) => {
+        setHandlinput(event.target.value)
+        console.log(handlinput);
+        const connectedUserName = connected[0]?.userName;
+        const following = connected[0]?.profile?.following?.map(user => user.userName);
+        let newTab = myData.filter(element => element.userName.toLowerCase().includes(event.target.value.toLowerCase()) && element.userName !== connectedUserName &&
+            !following?.includes(element.userName));
+        console.log(newTab);
+        setScreenSuggest(newTab);
+        getFilteredSuggestions()
+    }
     const [screenSuggest, setScreenSuggest] = useState(getFilteredSuggestions());
     console.log(screenSuggest);
     return (
@@ -89,7 +125,7 @@ export const Section = () => {
                                 </svg>
                             </div>
                             <input onChange={(e) => filterElement(e)} type="search" value={handlinput} id="default-search" className="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search Mockups, Logos..." required />
-                            <button type="submit" onClick={(e)=>{e.preventDefault()}} className="text-white absolute end-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Search</button>
+                            <button type="submit" onClick={(e) => { e.preventDefault() }} className="text-white absolute end-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Search</button>
                         </div>
                     </form>
                     <div className='flex flex-wrap gap-5 p-5'>
@@ -127,8 +163,13 @@ export const Section = () => {
                                             <span className="text-sm text-gray-500 dark:text-gray-400">Visual Designer</span>
                                             <div className="flex mt-4 md:mt-6">
                                                 <button
-                                                    onClick={(e) => {e.target.innerText = e.target.innerText === 'Connect' ? 'Unfollow' : 'Connect';handleConnect(element);}}
-                                                    className="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Connect
+                                                    onClick={(event) => {
+                                                        const action = event.target.innerText === 'Unfollow' ? 'unfollow' : 'follow';
+                                                        event.target.innerText = action === 'unfollow' ? 'Connect' : 'Unfollow';
+                                                        handleConnect(element, action);
+                                                    }}
+                                                    className="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                                    {element.following ? 'Unfollow' : 'Connect'}
                                                 </button>
                                             </div>
                                         </div>
