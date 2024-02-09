@@ -27,7 +27,7 @@ export const FirstSection = () => {
     // const [groupe, setGroupe] = useContext(MyContext)
     // const [connected, setConnected] = useContext(MyContext)
     const [screenArray, setScreenArray] = useState(connected);
-    console.log(connected[0].email);
+    // console.log(connected[0].email);
 
 
 
@@ -52,7 +52,7 @@ export const FirstSection = () => {
                     </div>
                     {/* Full name */}
                     <div className='Full-name w-[100%] pt-16 '>
-                        <h1 className=' text-2xl text-center '><b>{connected[0].userName}</b></h1>
+                        <h1 className=' text-2xl text-center '><b>{connected[0]?.userName}</b></h1>
                     </div>
                     {/* Stats of following followers and posts */}
                     <div className='Stats p-4 flex justify-center items-center  '>
