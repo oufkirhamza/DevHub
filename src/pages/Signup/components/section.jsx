@@ -106,7 +106,7 @@ export const Section = () => {
             alert("Passwords do not match or there is a validation error.");
         }
 
-        let newtable = [...myData, newUser]
+        let newtable = [...myData, newUser];
         setMyData(newtable);
     }
 

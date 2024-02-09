@@ -150,7 +150,7 @@ export const Section = () => {
     return (
         <>
             {/* navbar */}
-            <div className='nav bg-[#030712] fixed top-0 w-[100%] z-50  flex items-center py-3 px-5 justify-between shadow shadow-lg shadow-[#6c28d955]'>
+            <div className={`nav bg-[#030712] fixed top-0 w-[100%] z-50  flex items-center py-3 px-5 justify-between shadow shadow-lg shadow-[#6c28d955] ${theme == "light" ? " bg-[#030712]" : "bg-white"}`}>
                 <Link className='text-xl font-bold text-[#bcbcbc] hover:text-[#F9FAFB]' to={'/'}>DevHub</Link>
                 
                 <div className='navbar flex justify-around w-[40%]'>
@@ -171,7 +171,7 @@ export const Section = () => {
             </div>
 
             {/* sec-1 pic & name */}
-            <div className='flex flex-row justify-center gap-16 items-center  p-10 bg-[#030712] border-2 border-[#f9fafb4c] text-white rounded-xl w-[700px] m-auto mt-[10vh]'>
+            <div className={`flex flex-row justify-center gap-16 items-center  p-10 bg-[#030712] border-2 border-[#f9fafb4c] text-white rounded-xl w-[700px] m-auto mt-[10vh] ${theme == "light" ? " bg-[#030712]" : "bg-white"}`}>
 
                 {/* <img className='object-cover h-[200px] w-[200px] rounded-full ' src={(image)} alt="" /> */}
                 <div class="input-div ">
@@ -222,7 +222,7 @@ export const Section = () => {
             </div>
 
             {/* sec-2 form */}
-            <div className='flex justify-center  p-5 gap-10 '>
+            <div className={`flex justify-center  p-5 gap-10 ${theme == "light" ? " bg-[#030712]" : "bg-white"}`}>
 
 
 
